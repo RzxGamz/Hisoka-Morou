@@ -2578,16 +2578,15 @@ ${readmore}
 • ${prefix}unblock @user
 • ${prefix}bcgroup [text]
 • ${prefix}bcall [text]
-• ${prefix}setppbot [image]
-
- Whatsapp Bot`
-                let message = await prepareWAMessageMedia({ location: fs.readFileSync('./lib/img.jpg') }, { upload: sock.waUploadToServer })
-                const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                    templateMessage: {
-                        hydratedTemplate: {
-                            locationMessage: message.locationMessage,
-                            hydratedContentText: anu,
-                            hydratedButtons: [{
+• ${prefix}setppbot [image]`
+      const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+      templateMessage: {
+         hydratedTemplate: {
+           hydratedContentText: anu,
+             locationMessage: { 
+               jpegThumbnail: fs.readFileSync('./lib/img.jpg') },
+               hydratedFooterText: "║▌│█║▌│ █║▌│█│║▌║\n║▌│█║▌│ █║▌│█│║▌║\n\nRzc Whatsapp Bot",
+               hydratedButtons: [{       
                                 urlButton: {
                                     displayText: 'Source Code',
                                     url: 'https://github.com/DikaArdnt/Hisoka-Morou'
