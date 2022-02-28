@@ -46,7 +46,7 @@ module.exports = sock = async (sock, m, chatUpdate, store) => {
     try {
         var body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == 'templateButtonReplyMessage') ? m.message.templateButtonReplyMessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectReply.selectedRowId || m.text) : ''
         var budy = (typeof m.text == 'string' ? m.text : '')
-        var prefix = prefa ? /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi.test(body) ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi)[0] : "" : prefa ?? global.prefix
+        var prefix = prefa ? /^[Â°â€¢Ï€Ã·Ã—Â¶âˆ†Â£Â¢â‚¬Â¥Â®â„¢+âœ“_=|~!?@#$%^&.Â©^]/gi.test(body) ? body.match(/^[Â°â€¢Ï€Ã·Ã—Â¶âˆ†Â£Â¢â‚¬Â¥Â®â„¢+âœ“_=|~!?@#$%^&.Â©^]/gi)[0] : "" : prefa ?? global.prefix
         const isCmd = body.startsWith(prefix)
         const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
         const args = body.trim().split(/ +/).slice(1)
@@ -195,7 +195,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebaklagu[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await sock.sendButtonText(m.chat, [{ buttonId: 'tebak lagu', buttonText: { displayText: 'Tebak Lagu' }, type: 1 }], `🎮 Tebak Lagu 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, sock.user.name, m)
+                await sock.sendButtonText(m.chat, [{ buttonId: 'tebak lagu', buttonText: { displayText: 'Tebak Lagu' }, type: 1 }], `ðŸŽ® Tebak Lagu ðŸŽ®\n\nJawaban Benar ðŸŽ‰\n\nIngin bermain lagi? tekan button dibawah`, sock.user.name, m)
                 delete tebaklagu[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -204,7 +204,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = kuismath[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await m.reply(`🎮 Kuis Matematika  🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? kirim ${prefix}math mode`)
+                await m.reply(`ðŸŽ® Kuis Matematika  ðŸŽ®\n\nJawaban Benar ðŸŽ‰\n\nIngin bermain lagi? kirim ${prefix}math mode`)
                 delete kuismath[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -213,7 +213,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebakgambar[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await sock.sendButtonText(m.chat, [{ buttonId: 'tebak gambar', buttonText: { displayText: 'Tebak Gambar' }, type: 1 }], `🎮 Tebak Gambar 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, sock.user.name, m)
+                await sock.sendButtonText(m.chat, [{ buttonId: 'tebak gambar', buttonText: { displayText: 'Tebak Gambar' }, type: 1 }], `ðŸŽ® Tebak Gambar ðŸŽ®\n\nJawaban Benar ðŸŽ‰\n\nIngin bermain lagi? tekan button dibawah`, sock.user.name, m)
                 delete tebakgambar[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -222,7 +222,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebakkata[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await sock.sendButtonText(m.chat, [{ buttonId: 'tebak kata', buttonText: { displayText: 'Tebak Kata' }, type: 1 }], `🎮 Tebak Kata 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, sock.user.name, m)
+                await sock.sendButtonText(m.chat, [{ buttonId: 'tebak kata', buttonText: { displayText: 'Tebak Kata' }, type: 1 }], `ðŸŽ® Tebak Kata ðŸŽ®\n\nJawaban Benar ðŸŽ‰\n\nIngin bermain lagi? tekan button dibawah`, sock.user.name, m)
                 delete tebakkata[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -232,7 +232,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             jawaban = caklontong[m.sender.split('@')[0]]
 	    deskripsi = caklontong_desk[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await sock.sendButtonText(m.chat, [{ buttonId: 'tebak lontong', buttonText: { displayText: 'Tebak Lontong' }, type: 1 }], `🎮 Cak Lontong 🎮\n\nJawaban Benar 🎉\n*${deskripsi}*\n\nIngin bermain lagi? tekan button dibawah`, sock.user.name, m)
+                await sock.sendButtonText(m.chat, [{ buttonId: 'tebak lontong', buttonText: { displayText: 'Tebak Lontong' }, type: 1 }], `ðŸŽ® Cak Lontong ðŸŽ®\n\nJawaban Benar ðŸŽ‰\n*${deskripsi}*\n\nIngin bermain lagi? tekan button dibawah`, sock.user.name, m)
                 delete caklontong[m.sender.split('@')[0]]
 		delete caklontong_desk[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
@@ -242,7 +242,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebakkalimat[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await sock.sendButtonText(m.chat, [{ buttonId: 'tebak kalimat', buttonText: { displayText: 'Tebak Kalimat' }, type: 1 }], `🎮 Tebak Kalimat 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, sock.user.name, m)
+                await sock.sendButtonText(m.chat, [{ buttonId: 'tebak kalimat', buttonText: { displayText: 'Tebak Kalimat' }, type: 1 }], `ðŸŽ® Tebak Kalimat ðŸŽ®\n\nJawaban Benar ðŸŽ‰\n\nIngin bermain lagi? tekan button dibawah`, sock.user.name, m)
                 delete tebakkalimat[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -251,7 +251,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebaklirik[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await sock.sendButtonText(m.chat, [{ buttonId: 'tebak lirik', buttonText: { displayText: 'Tebak Lirik' }, type: 1 }], `🎮 Tebak Lirik 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, sock.user.name, m)
+                await sock.sendButtonText(m.chat, [{ buttonId: 'tebak lirik', buttonText: { displayText: 'Tebak Lirik' }, type: 1 }], `ðŸŽ® Tebak Lirik ðŸŽ®\n\nJawaban Benar ðŸŽ‰\n\nIngin bermain lagi? tekan button dibawah`, sock.user.name, m)
                 delete tebaklirik[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -260,7 +260,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebaktebakan[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await sock.sendButtonText(m.chat, [{ buttonId: 'tebak tebakan', buttonText: { displayText: 'Tebak Tebakan' }, type: 1 }], `🎮 Tebak Tebakan 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, sock.user.name, m)
+                await sock.sendButtonText(m.chat, [{ buttonId: 'tebak tebakan', buttonText: { displayText: 'Tebak Tebakan' }, type: 1 }], `ðŸŽ® Tebak Tebakan ðŸŽ®\n\nJawaban Benar ðŸŽ‰\n\nIngin bermain lagi? tekan button dibawah`, sock.user.name, m)
                 delete tebaktebakan[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
@@ -292,17 +292,17 @@ ${Array.from(room.jawaban, (jawaban, index) => {
 	    else if (room.game.board === 511) isTie = true
 	    let arr = room.game.render().map(v => {
 	    return {
-	    X: '❌',
-	    O: '⭕',
-	    1: '1️⃣',
-	    2: '2️⃣',
-	    3: '3️⃣',
-	    4: '4️⃣',
-	    5: '5️⃣',
-	    6: '6️⃣',
-	    7: '7️⃣',
-	    8: '8️⃣',
-	    9: '9️⃣',
+	    X: 'âŒ',
+	    O: 'â­•',
+	    1: '1ï¸âƒ£',
+	    2: '2ï¸âƒ£',
+	    3: '3ï¸âƒ£',
+	    4: '4ï¸âƒ£',
+	    5: '5ï¸âƒ£',
+	    6: '6ï¸âƒ£',
+	    7: '7ï¸âƒ£',
+	    8: '8ï¸âƒ£',
+	    9: '9ï¸âƒ£',
 	    }[v]
 	    })
 	    if (isSurrender) {
@@ -316,9 +316,9 @@ ${arr.slice(0, 3).join('')}
 ${arr.slice(3, 6).join('')}
 ${arr.slice(6).join('')}
 
-${isWin ? `@${winner.split('@')[0]} Menang!` : isTie ? `Game berakhir` : `Giliran ${['❌', '⭕'][1 * room.game._currentTurn]} (@${room.game.currentTurn.split('@')[0]})`}
-❌: @${room.game.playerX.split('@')[0]}
-⭕: @${room.game.playerO.split('@')[0]}
+${isWin ? `@${winner.split('@')[0]} Menang!` : isTie ? `Game berakhir` : `Giliran ${['âŒ', 'â­•'][1 * room.game._currentTurn]} (@${room.game.currentTurn.split('@')[0]})`}
+âŒ: @${room.game.playerX.split('@')[0]}
+â­•: @${room.game.playerO.split('@')[0]}
 
 Ketik *nyerah* untuk menyerah dan mengakui kekalahan`
 	    if ((room.game._currentTurn ^ isSurrender ? room.x : room.o) !== m.chat)
@@ -353,8 +353,8 @@ Ketik *nyerah* untuk menyerah dan mengakui kekalahan`
 
 Silahkan pilih suit di chat masing"
 klik https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] })
-	    if (!roof.pilih) sock.sendText(roof.p, `Silahkan pilih \n\nBatu🗿\nKertas📄\nGunting✂️`, m)
-	    if (!roof.pilih2) sock.sendText(roof.p2, `Silahkan pilih \n\nBatu🗿\nKertas📄\nGunting✂️`, m)
+	    if (!roof.pilih) sock.sendText(roof.p, `Silahkan pilih \n\nBatuðŸ—¿\nKertasðŸ“„\nGuntingâœ‚ï¸`, m)
+	    if (!roof.pilih2) sock.sendText(roof.p2, `Silahkan pilih \n\nBatuðŸ—¿\nKertasðŸ“„\nGuntingâœ‚ï¸`, m)
 	    roof.waktu_milih = setTimeout(() => {
 	    if (!roof.pilih && !roof.pilih2) sock.sendText(m.chat, `Kedua pemain tidak niat main,\nSuit dibatalkan`)
 	    else if (!roof.pilih || !roof.pilih2) {
@@ -415,17 +415,17 @@ klik https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] }
             room.state = 'PLAYING'
             let arr = room.game.render().map(v => {
             return {
-            X: '❌',
-            O: '⭕',
-            1: '1️⃣',
-            2: '2️⃣',
-            3: '3️⃣',
-            4: '4️⃣',
-            5: '5️⃣',
-            6: '6️⃣',
-            7: '7️⃣',
-            8: '8️⃣',
-            9: '9️⃣',
+            X: 'âŒ',
+            O: 'â­•',
+            1: '1ï¸âƒ£',
+            2: '2ï¸âƒ£',
+            3: '3ï¸âƒ£',
+            4: '4ï¸âƒ£',
+            5: '5ï¸âƒ£',
+            6: '6ï¸âƒ£',
+            7: '7ï¸âƒ£',
+            8: '8ï¸âƒ£',
+            9: '9ï¸âƒ£',
             }[v]
             })
             let str = `Room ID: ${room.id}
@@ -460,7 +460,7 @@ Ketik *nyerah* untuk menyerah dan mengakui kekalahan`
             delete this.game
             sock.sendText(m.chat, `Berhasil delete session TicTacToe`, m)
             } else if (!this.game) {
-            m.reply(`Session TicTacToe🎮 tidak ada`)
+            m.reply(`Session TicTacToeðŸŽ® tidak ada`)
             } else throw '?'
             } catch (e) {
             m.reply('rusak')
@@ -496,7 +496,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             }
             break
 	    case 'donasi': case 'sewabot': case 'sewa': case 'buypremium': case 'donate': {
-                sock.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/74fd634010128be37972c.jpg' }, caption: `*Hai Kak ${m.pushName}*\n\n Bot Rental Prices\n⭔ 13k Per Group via E-Walet 1 Month\n⭔ 18k via pulsa 1 Month\n\n Premium Price Bot\n⭔ 8k per User 1 bulan\n\nPayment can be via Paypal/link aja/pulsa\n\nFor more details, you can chat with the owner\nhttps://wa.me/6288292024190 (Owner)\n\nDonate For Me : \n\n⭔ Paypal : https://www.paypal.me/Cakhaho\n⭔ Saweria : https://saweria.co/DikaArdnt` }, { quoted: m })
+                sock.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/74fd634010128be37972c.jpg' }, caption: `*Hai Kak ${m.pushName}*\n\n Bot Rental Prices\nâ­” 13k Per Group via E-Walet 1 Month\nâ­” 18k via pulsa 1 Month\n\n Premium Price Bot\nâ­” 8k per User 1 bulan\n\nPayment can be via Paypal/link aja/pulsa\n\nFor more details, you can chat with the owner\nhttps://wa.me/6288292024190 (Owner)\n\nDonate For Me : \n\nâ­” Paypal : https://www.paypal.me/Cakhaho\nâ­” Saweria : https://saweria.co/DikaArdnt` }, { quoted: m })
             }
             break
             case 'sc': {
@@ -653,9 +653,9 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             let member = participants.map(u => u.id)
             let me = m.sender
             let jodoh = member[Math.floor(Math.random() * member.length)]
-            let jawab = `👫Jodoh mu adalah
+            let jawab = `ðŸ‘«Jodoh mu adalah
 
-@${me.split('@')[0]} ❤️ @${jodoh.split('@')[0]}`
+@${me.split('@')[0]} â¤ï¸ @${jodoh.split('@')[0]}`
             let ments = [me, jodoh]
             let buttons = [
                         { buttonId: 'jodohku', buttonText: { displayText: 'Jodohku' }, type: 1 }
@@ -668,9 +668,9 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             let member = participants.map(u => u.id)
             let orang = member[Math.floor(Math.random() * member.length)]
             let jodoh = member[Math.floor(Math.random() * member.length)]
-            let jawab = `Ciee yang Jadian💖 Jangan lupa pajak jadiannya🐤
+            let jawab = `Ciee yang JadianðŸ’– Jangan lupa pajak jadiannyaðŸ¤
 
-@${orang.split('@')[0]} ❤️ @${jodoh.split('@')[0]}`
+@${orang.split('@')[0]} â¤ï¸ @${jodoh.split('@')[0]}`
             let menst = [orang, jodoh]
             let buttons = [
                         { buttonId: 'jadian', buttonText: { displayText: 'Jodohku' }, type: 1 }
@@ -777,11 +777,11 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
-let teks = `══✪〘 *👥 Tag All* 〙✪══
+let teks = `â•â•âœªã€˜ *ðŸ‘¥ Tag All* ã€™âœªâ•â•
  
- ➲ *Pesan : ${q ? q : 'kosong'}*\n\n`
+ âž² *Pesan : ${q ? q : 'kosong'}*\n\n`
                 for (let mem of participants) {
-                teks += `⭔ @${mem.id.split('@')[0]}\n`
+                teks += `â­” @${mem.id.split('@')[0]}\n`
                 }
                 sock.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
                 }
@@ -819,28 +819,28 @@ break
             await sleep(1000)
             upvote = vote[m.chat][1]
             devote = vote[m.chat][2]
-            teks_vote = `*「 VOTE 」*
+            teks_vote = `*ã€Œ VOTE ã€*
 
 *Alasan:* ${vote[m.chat][0]}
 
-┌〔 UPVOTE 〕
-│ 
-├ Total: ${vote[m.chat][1].length}
-│
-│ 
-└────
+â”Œã€” UPVOTE ã€•
+â”‚ 
+â”œ Total: ${vote[m.chat][1].length}
+â”‚
+â”‚ 
+â””â”€â”€â”€â”€
 
-┌〔 DEVOTE 〕
-│ 
-├ Total: ${vote[m.chat][2].length}
-│
-│ 
-└────
+â”Œã€” DEVOTE ã€•
+â”‚ 
+â”œ Total: ${vote[m.chat][2].length}
+â”‚
+â”‚ 
+â””â”€â”€â”€â”€
 
 *${prefix}hapusvote* - untuk menghapus vote`
 let buttonsVote = [
-  {buttonId: `${prefix}upvote`, buttonText: {displayText: '𝚄𝙿𝚅𝙾𝚃𝙴'}, type: 1},
-  {buttonId: `${prefix}devote`, buttonText: {displayText: '𝙳𝙴𝚅𝙾𝚃𝙴'}, type: 1}
+  {buttonId: `${prefix}upvote`, buttonText: {displayText: 'ðš„ð™¿ðš…ð™¾ðšƒð™´'}, type: 1},
+  {buttonId: `${prefix}devote`, buttonText: {displayText: 'ð™³ð™´ðš…ð™¾ðšƒð™´'}, type: 1}
 ]
 
             let buttonMessageVote = {
@@ -860,28 +860,28 @@ let buttonsVote = [
             if (wasVote) throw 'Kamu Sudah Vote'
             vote[m.chat][1].push(m.sender)
             menvote = vote[m.chat][1].concat(vote[m.chat][2])
-            teks_vote = `*「 VOTE 」*
+            teks_vote = `*ã€Œ VOTE ã€*
 
 *Alasan:* ${vote[m.chat][0]}
 
-┌〔 UPVOTE 〕
-│ 
-├ Total: ${vote[m.chat][1].length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
+â”Œã€” UPVOTE ã€•
+â”‚ 
+â”œ Total: ${vote[m.chat][1].length}
+${vote[m.chat][1].map((v, i) => `â”œ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
+â”‚ 
+â””â”€â”€â”€â”€
 
-┌〔 DEVOTE 〕
-│ 
-├ Total: ${vote[m.chat][2].length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
+â”Œã€” DEVOTE ã€•
+â”‚ 
+â”œ Total: ${vote[m.chat][2].length}
+${vote[m.chat][2].map((v, i) => `â”œ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
+â”‚ 
+â””â”€â”€â”€â”€
 
 *${prefix}hapusvote* - untuk menghapus vote`
             let buttonsUpvote = [
-              {buttonId: `${prefix}upvote`, buttonText: {displayText: '𝚄𝙿𝚅𝙾𝚃𝙴'}, type: 1},
-              {buttonId: `${prefix}devote`, buttonText: {displayText: '𝙳𝙴𝚅𝙾𝚃𝙴'}, type: 1}
+              {buttonId: `${prefix}upvote`, buttonText: {displayText: 'ðš„ð™¿ðš…ð™¾ðšƒð™´'}, type: 1},
+              {buttonId: `${prefix}devote`, buttonText: {displayText: 'ð™³ð™´ðš…ð™¾ðšƒð™´'}, type: 1}
             ]
 
             let buttonMessageUpvote = {
@@ -902,28 +902,28 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
             if (wasVote) throw 'Kamu Sudah Vote'
             vote[m.chat][2].push(m.sender)
             menvote = vote[m.chat][1].concat(vote[m.chat][2])
-            teks_vote = `*「 VOTE 」*
+            teks_vote = `*ã€Œ VOTE ã€*
 
 *Alasan:* ${vote[m.chat][0]}
 
-┌〔 UPVOTE 〕
-│ 
-├ Total: ${vote[m.chat][1].length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
+â”Œã€” UPVOTE ã€•
+â”‚ 
+â”œ Total: ${vote[m.chat][1].length}
+${vote[m.chat][1].map((v, i) => `â”œ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
+â”‚ 
+â””â”€â”€â”€â”€
 
-┌〔 DEVOTE 〕
-│ 
-├ Total: ${vote[m.chat][2].length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
+â”Œã€” DEVOTE ã€•
+â”‚ 
+â”œ Total: ${vote[m.chat][2].length}
+${vote[m.chat][2].map((v, i) => `â”œ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
+â”‚ 
+â””â”€â”€â”€â”€
 
 *${prefix}hapusvote* - untuk menghapus vote`
             let buttonsDevote = [
-              {buttonId: `${prefix}upvote`, buttonText: {displayText: '𝚄𝙿𝚅𝙾𝚃𝙴'}, type: 1},
-              {buttonId: `${prefix}devote`, buttonText: {displayText: '𝙳𝙴𝚅𝙾𝚃𝙴'}, type: 1}
+              {buttonId: `${prefix}upvote`, buttonText: {displayText: 'ðš„ð™¿ðš…ð™¾ðšƒð™´'}, type: 1},
+              {buttonId: `${prefix}devote`, buttonText: {displayText: 'ð™³ð™´ðš…ð™¾ðšƒð™´'}, type: 1}
             ]
 
             let buttonMessageDevote = {
@@ -940,28 +940,28 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 case 'cekvote':
 if (!m.isGroup) throw mess.group
 if (!(m.chat in vote)) throw `_*tidak ada voting digrup ini!*_\n\n*${prefix}vote* - untuk memulai vote`
-teks_vote = `*「 VOTE 」*
+teks_vote = `*ã€Œ VOTE ã€*
 
 *Alasan:* ${vote[m.chat][0]}
 
-┌〔 UPVOTE 〕
-│ 
-├ Total: ${upvote.length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
+â”Œã€” UPVOTE ã€•
+â”‚ 
+â”œ Total: ${upvote.length}
+${vote[m.chat][1].map((v, i) => `â”œ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
+â”‚ 
+â””â”€â”€â”€â”€
 
-┌〔 DEVOTE 〕
-│ 
-├ Total: ${devote.length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
+â”Œã€” DEVOTE ã€•
+â”‚ 
+â”œ Total: ${devote.length}
+${vote[m.chat][2].map((v, i) => `â”œ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
+â”‚ 
+â””â”€â”€â”€â”€
 
 *${prefix}hapusvote* - untuk menghapus vote
 
 
-©${sock.user.id}
+Â©${sock.user.id}
 `
 sock.sendTextWithMentions(m.chat, teks_vote, m)
 break
@@ -1049,7 +1049,7 @@ break
                                 }
                             }]
                       fatihgans = fs.readFileSync('./lib/img.jpg')
-                      let txt = `� Broadcast �\n\n${text}`
+                      let txt = `• Broadcast •\n\n${text}`
                       sock.send5ButImg(i, txt, "Broadcast", fatihgans, btn)
                     }
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
@@ -1069,7 +1069,7 @@ break
                                 }
                             }]
                       fatihgans = fs.readFileSync('./lib/img.jpg')
-                      let txt = `� Broadcast �\n\n${text}`
+                      let txt = `• Broadcast •\n\n${text}`
                       sock.send5ButImg(yoi, txt, "Broadcast", fatihgans, btn)
 		}
 		m.reply('Sukses Broadcast')
@@ -1084,8 +1084,8 @@ break
                     let read = i.readTimestamp
                     let unread = i.receiptTimestamp
                     let waktu = read ? read : unread
-                    teks += `⭔ @${i.userJid.split('@')[0]}\n`
-                    teks += ` ┗━⭔ *Waktu :* ${moment(waktu * 1000).format('DD/MM/YY HH:mm:ss')} ⭔ *Status :* ${read ? 'Dibaca' : 'Terkirim'}\n\n`
+                    teks += `â­” @${i.userJid.split('@')[0]}\n`
+                    teks += ` â”—â”â­” *Waktu :* ${moment(waktu * 1000).format('DD/MM/YY HH:mm:ss')} â­” *Status :* ${read ? 'Dibaca' : 'Terkirim'}\n\n`
                 }
                 sock.sendTextWithMentions(m.chat, teks, m)
             }
@@ -1099,20 +1099,20 @@ break
 	    break
             case 'listpc': {
                  let anu = await store.chats.all().filter(v => v.id.endsWith('.net')).map(v => v.id)
-                 let teks = `⬣ *LIST PERSONAL CHAT*\n\nTotal Chat : ${anu.length} Chat\n\n`
+                 let teks = `â¬£ *LIST PERSONAL CHAT*\n\nTotal Chat : ${anu.length} Chat\n\n`
                  for (let i of anu) {
                      let nama = store.messages[i].array[0].pushName
-                     teks += `⬡ *Nama :* ${nama}\n⬡ *User :* @${i.split('@')[0]}\n⬡ *Chat :* https://wa.me/${i.split('@')[0]}\n\n────────────────────────\n\n`
+                     teks += `â¬¡ *Nama :* ${nama}\nâ¬¡ *User :* @${i.split('@')[0]}\nâ¬¡ *Chat :* https://wa.me/${i.split('@')[0]}\n\nâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n\n`
                  }
                  sock.sendTextWithMentions(m.chat, teks, m)
              }
              break
                 case 'listgc': {
                  let anu = await store.chats.all().filter(v => v.id.endsWith('@g.us')).map(v => v.id)
-                 let teks = `⬣ *LIST GROUP CHAT*\n\nTotal Group : ${anu.length} Group\n\n`
+                 let teks = `â¬£ *LIST GROUP CHAT*\n\nTotal Group : ${anu.length} Group\n\n`
                  for (let i of anu) {
                      let metadata = await sock.groupMetadata(i)
-                     teks += `⬡ *Nama :* ${metadata.subject}\n⬡ *Owner :* @${metadata.owner.split('@')[0]}\n⬡ *ID :* ${metadata.id}\n⬡ *Dibuat :* ${moment(metadata.creation * 1000).tz('Asia/Jakarta').format('DD/MM/YYYY HH:mm:ss')}\n⬡ *Member :* ${metadata.participants.length}\n\n────────────────────────\n\n`
+                     teks += `â¬¡ *Nama :* ${metadata.subject}\nâ¬¡ *Owner :* @${metadata.owner.split('@')[0]}\nâ¬¡ *ID :* ${metadata.id}\nâ¬¡ *Dibuat :* ${moment(metadata.creation * 1000).tz('Asia/Jakarta').format('DD/MM/YYYY HH:mm:ss')}\nâ¬¡ *Member :* ${metadata.participants.length}\n\nâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n\n`
                  }
                  sock.sendTextWithMentions(m.chat, teks, m)
              }
@@ -1120,7 +1120,7 @@ break
              case 'listonline': case 'liston': {
                     let id = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : m.chat
                     let online = [...Object.keys(store.presences[id]), botNumber]
-                    sock.sendText(m.chat, 'List Online:\n\n' + online.map(v => '⭔ @' + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
+                    sock.sendText(m.chat, 'List Online:\n\n' + online.map(v => 'â­” @' + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
              }
              break
             case 'sticker': case 's': case 'stickergif': case 'sgif': {
@@ -1157,7 +1157,7 @@ break
         }
         break
             case 'emojimix': {
-	        if (!text) throw `Example : ${prefix + command} 😅+🤔`
+	        if (!text) throw `Example : ${prefix + command} ðŸ˜…+ðŸ¤”`
 		let [emoji1, emoji2] = text.split`+`
 		let anu = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
 		for (let res of anu.results) {
@@ -1280,7 +1280,7 @@ break
                 let teks = 'YouTube Search\n\n Result From '+text+'\n\n'
                 let no = 1
                 for (let i of search.all) {
-                    teks += `⭔ No : ${no++}\n⭔ Type : ${i.type}\n⭔ Video ID : ${i.videoId}\n⭔ Title : ${i.title}\n⭔ Views : ${i.views}\n⭔ Duration : ${i.timestamp}\n⭔ Upload At : ${i.ago}\n⭔ Author : ${i.author.name}\n⭔ Url : ${i.url}\n\n─────────────────\n\n`
+                    teks += `â­” No : ${no++}\nâ­” Type : ${i.type}\nâ­” Video ID : ${i.videoId}\nâ­” Title : ${i.title}\nâ­” Views : ${i.views}\nâ­” Duration : ${i.timestamp}\nâ­” Upload At : ${i.ago}\nâ­” Author : ${i.author.name}\nâ­” Url : ${i.url}\n\nâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n\n`
                 }
                 sock.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
             }
@@ -1291,9 +1291,9 @@ break
                 google({'query': text}).then(res => {
                 let teks = `Google Search From : ${text}\n\n`
                 for (let g of res) {
-                teks += `⭔ *Title* : ${g.title}\n`
-                teks += `⭔ *Description* : ${g.snippet}\n`
-                teks += `⭔ *Link* : ${g.link}\n\n────────────────────────\n\n`
+                teks += `â­” *Title* : ${g.title}\n`
+                teks += `â­” *Description* : ${g.snippet}\n`
+                teks += `â­” *Link* : ${g.link}\n\nâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n\n`
                 } 
                 m.reply(teks)
                 })
@@ -1310,9 +1310,9 @@ break
                 ]
                 let buttonMessage = {
                     image: { url: images },
-                    caption: `*-------「 GIMAGE SEARCH 」-------*
-🤠 *Query* : ${text}
-🔗 *Media Url* : ${images}`,
+                    caption: `*-------ã€Œ GIMAGE SEARCH ã€-------*
+ðŸ¤  *Query* : ${text}
+ðŸ”— *Media Url* : ${images}`,
                     footer: sock.user.name,
                     buttons: buttons,
                     headerType: 4
@@ -1327,22 +1327,22 @@ break
                 let search = await yts(text)
                 let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
                 let buttons = [
-                    {buttonId: `ytmp3 ${anu.url}`, buttonText: {displayText: '♫ Audio'}, type: 1},
-                    {buttonId: `ytmp4 ${anu.url}`, buttonText: {displayText: '► Video'}, type: 1}
+                    {buttonId: `ytmp3 ${anu.url}`, buttonText: {displayText: 'â™« Audio'}, type: 1},
+                    {buttonId: `ytmp4 ${anu.url}`, buttonText: {displayText: 'â–º Video'}, type: 1}
                 ]
                 let buttonMessage = {
                     image: { url: anu.thumbnail },
                     caption: `
-⭔ Title : ${anu.title}
-⭔ Ext : Search
-⭔ ID : ${anu.videoId}
-⭔ Duration : ${anu.timestamp}
-⭔ Viewers : ${anu.views}
-⭔ Upload At : ${anu.ago}
-⭔ Author : ${anu.author.name}
-⭔ Channel : ${anu.author.url}
-⭔ Description : ${anu.description}
-⭔ Url : ${anu.url}`,
+â­” Title : ${anu.title}
+â­” Ext : Search
+â­” ID : ${anu.videoId}
+â­” Duration : ${anu.timestamp}
+â­” Viewers : ${anu.views}
+â­” Upload At : ${anu.ago}
+â­” Author : ${anu.author.name}
+â­” Channel : ${anu.author.url}
+â­” Description : ${anu.description}
+â­” Url : ${anu.url}`,
                     footer: sock.user.name,
                     buttons: buttons,
                     headerType: 4
@@ -1356,7 +1356,7 @@ break
                 let quality = args[1] ? args[1] : '128kbps'
                 let media = await yta(text, quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
-                sock.sendImage(m.chat, media.thumb, `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '128kbps'}`, m)
+                sock.sendImage(m.chat, media.thumb, `â­” Title : ${media.title}\nâ­” File Size : ${media.filesizeF}\nâ­” Url : ${isUrl(text)}\nâ­” Ext : MP3\nâ­” Resolusi : ${args[1] || '128kbps'}`, m)
                 sock.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
             }
             break
@@ -1366,7 +1366,7 @@ break
                 let quality = args[1] ? args[1] : '360p'
                 let media = await ytv(text, quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
-                sock.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '360p'}` }, { quoted: m })
+                sock.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `â­” Title : ${media.title}\nâ­” File Size : ${media.filesizeF}\nâ­” Url : ${isUrl(text)}\nâ­” Ext : MP3\nâ­” Resolusi : ${args[1] || '360p'}` }, { quoted: m })
             }
             break
 	    case 'getmusic': {
@@ -1379,7 +1379,7 @@ break
                 let quality = args[1] ? args[1] : '128kbps'
                 let media = await yta(urls[text - 1], quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
-                sock.sendImage(m.chat, media.thumb, `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '128kbps'}`, m)
+                sock.sendImage(m.chat, media.thumb, `â­” Title : ${media.title}\nâ­” File Size : ${media.filesizeF}\nâ­” Url : ${isUrl(text)}\nâ­” Ext : MP3\nâ­” Resolusi : ${args[1] || '128kbps'}`, m)
                 sock.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
             }
             break
@@ -1393,7 +1393,7 @@ break
                 let quality = args[1] ? args[1] : '360p'
                 let media = await ytv(urls[text - 1], quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
-                sock.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '360p'}` }, { quoted: m })
+                sock.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `â­” Title : ${media.title}\nâ­” File Size : ${media.filesizeF}\nâ­” Url : ${isUrl(text)}\nâ­” Ext : MP3\nâ­” Resolusi : ${args[1] || '360p'}` }, { quoted: m })
             }
             break
             case 'pinterest': {
@@ -1401,7 +1401,7 @@ break
 		let { pinterest } = require('./lib/scraper')
                 anu = await pinterest(text)
                 result = anu[Math.floor(Math.random() * anu.length)]
-                sock.sendMessage(m.chat, { image: { url: result }, caption: '⭔ Media Url : '+result }, { quoted: m })
+                sock.sendMessage(m.chat, { image: { url: result }, caption: 'â­” Media Url : '+result }, { quoted: m })
             }
             break
             case 'anime': case 'waifu': case 'husbu': case 'neko': case 'shinobu': case 'megumin': {
@@ -1423,7 +1423,7 @@ break
                 ]
                 let buttonMessage = {
                     image: { url: 'https://coffee.alexflipnote.dev/random' },
-                    caption: `☕ Random Coffe`,
+                    caption: `â˜• Random Coffe`,
                     footer: sock.user.name,
                     buttons: buttons,
                     headerType: 4
@@ -1441,7 +1441,7 @@ break
                 ]
                 let buttonMessage = {
                     image: { url: result.image[0] },
-                    caption: `⭔ Title : ${result.title}\n⭔ Category : ${result.type}\n⭔ Detail : ${result.source}\n⭔ Media Url : ${result.image[2] || result.image[1] || result.image[0]}`,
+                    caption: `â­” Title : ${result.title}\nâ­” Category : ${result.type}\nâ­” Detail : ${result.source}\nâ­” Media Url : ${result.image[2] || result.image[1] || result.image[0]}`,
                     footer: sock.user.name,
                     buttons: buttons,
                     headerType: 4
@@ -1459,7 +1459,7 @@ break
                 ]
                 let buttonMessage = {
                     image: { url: result.image },
-                    caption: `⭔ Title : ${result.title}\n⭔ Source : ${result.source}\n⭔ Media Url : ${result.image}`,
+                    caption: `â­” Title : ${result.title}\nâ­” Source : ${result.source}\nâ­” Media Url : ${result.image}`,
                     footer: sock.user.name,
                     buttons: buttons,
                     headerType: 4
@@ -1519,14 +1519,14 @@ break
                 if (!Number(text)) throw `Example : ${prefix + command} 6288292024190`
                 let anu = await primbon.nomer_hoki(Number(text))
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Nomor HP :* ${anu.message.nomer_hp}\n⭔ *Angka Shuzi :* ${anu.message.angka_shuzi}\n⭔ *Energi Positif :*\n- Kekayaan : ${anu.message.energi_positif.kekayaan}\n- Kesehatan : ${anu.message.energi_positif.kesehatan}\n- Cinta : ${anu.message.energi_positif.cinta}\n- Kestabilan : ${anu.message.energi_positif.kestabilan}\n- Persentase : ${anu.message.energi_positif.persentase}\n⭔ *Energi Negatif :*\n- Perselisihan : ${anu.message.energi_negatif.perselisihan}\n- Kehilangan : ${anu.message.energi_negatif.kehilangan}\n- Malapetaka : ${anu.message.energi_negatif.malapetaka}\n- Kehancuran : ${anu.message.energi_negatif.kehancuran}\n- Persentase : ${anu.message.energi_negatif.persentase}`, m)
+                sock.sendText(m.chat, `â­” *Nomor HP :* ${anu.message.nomer_hp}\nâ­” *Angka Shuzi :* ${anu.message.angka_shuzi}\nâ­” *Energi Positif :*\n- Kekayaan : ${anu.message.energi_positif.kekayaan}\n- Kesehatan : ${anu.message.energi_positif.kesehatan}\n- Cinta : ${anu.message.energi_positif.cinta}\n- Kestabilan : ${anu.message.energi_positif.kestabilan}\n- Persentase : ${anu.message.energi_positif.persentase}\nâ­” *Energi Negatif :*\n- Perselisihan : ${anu.message.energi_negatif.perselisihan}\n- Kehilangan : ${anu.message.energi_negatif.kehilangan}\n- Malapetaka : ${anu.message.energi_negatif.malapetaka}\n- Kehancuran : ${anu.message.energi_negatif.kehancuran}\n- Persentase : ${anu.message.energi_negatif.persentase}`, m)
             }
             break
             case 'artimimpi': case 'tafsirmimpi': {
                 if (!text) throw `Example : ${prefix + command} belanja`
                 let anu = await primbon.tafsir_mimpi(text)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Mimpi :* ${anu.message.mimpi}\n⭔ *Arti :* ${anu.message.arti}\n⭔ *Solusi :* ${anu.message.solusi}`, m)
+                sock.sendText(m.chat, `â­” *Mimpi :* ${anu.message.mimpi}\nâ­” *Arti :* ${anu.message.arti}\nâ­” *Solusi :* ${anu.message.solusi}`, m)
             }
             break
             case 'ramalanjodoh': case 'ramaljodoh': {
@@ -1534,7 +1534,7 @@ break
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.ramalan_jodoh(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Nama Anda :* ${anu.message.nama_anda.nama}\n⭔ *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\n⭔ *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\n⭔ *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Nama Anda :* ${anu.message.nama_anda.nama}\nâ­” *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\nâ­” *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\nâ­” *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\nâ­” *Hasil :* ${anu.message.result}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'ramalanjodohbali': case 'ramaljodohbali': {
@@ -1542,7 +1542,7 @@ break
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.ramalan_jodoh_bali(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Nama Anda :* ${anu.message.nama_anda.nama}\n⭔ *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\n⭔ *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\n⭔ *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Nama Anda :* ${anu.message.nama_anda.nama}\nâ­” *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\nâ­” *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\nâ­” *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\nâ­” *Hasil :* ${anu.message.result}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'suamiistri': {
@@ -1550,7 +1550,7 @@ break
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.suami_istri(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Nama Suami :* ${anu.message.suami.nama}\n⭔ *Lahir Suami :* ${anu.message.suami.tgl_lahir}\n⭔ *Nama Istri :* ${anu.message.istri.nama}\n⭔ *Lahir Istri :* ${anu.message.istri.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Nama Suami :* ${anu.message.suami.nama}\nâ­” *Lahir Suami :* ${anu.message.suami.tgl_lahir}\nâ­” *Nama Istri :* ${anu.message.istri.nama}\nâ­” *Lahir Istri :* ${anu.message.istri.tgl_lahir}\nâ­” *Hasil :* ${anu.message.result}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'ramalancinta': case 'ramalcinta': {
@@ -1558,14 +1558,14 @@ break
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.ramalan_cinta(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Nama Anda :* ${anu.message.nama_anda.nama}\n⭔ *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\n⭔ *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\n⭔ *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\n⭔ *Sisi Positif :* ${anu.message.sisi_positif}\n⭔ *Sisi Negatif :* ${anu.message.sisi_negatif}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Nama Anda :* ${anu.message.nama_anda.nama}\nâ­” *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\nâ­” *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\nâ­” *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\nâ­” *Sisi Positif :* ${anu.message.sisi_positif}\nâ­” *Sisi Negatif :* ${anu.message.sisi_negatif}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'artinama': {
                 if (!text) throw `Example : ${prefix + command} Dika Ardianta`
                 let anu = await primbon.arti_nama(text)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Arti :* ${anu.message.arti}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Nama :* ${anu.message.nama}\nâ­” *Arti :* ${anu.message.arti}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'kecocokannama': case 'cocoknama': {
@@ -1573,7 +1573,7 @@ break
                 let [nama, tgl, bln, thn] = text.split`,`
                 let anu = await primbon.kecocokan_nama(nama, tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Life Path :* ${anu.message.life_path}\n⭔ *Destiny :* ${anu.message.destiny}\n⭔ *Destiny Desire :* ${anu.message.destiny_desire}\n⭔ *Personality :* ${anu.message.personality}\n⭔ *Persentase :* ${anu.message.persentase_kecocokan}`, m)
+                sock.sendText(m.chat, `â­” *Nama :* ${anu.message.nama}\nâ­” *Lahir :* ${anu.message.tgl_lahir}\nâ­” *Life Path :* ${anu.message.life_path}\nâ­” *Destiny :* ${anu.message.destiny}\nâ­” *Destiny Desire :* ${anu.message.destiny_desire}\nâ­” *Personality :* ${anu.message.personality}\nâ­” *Persentase :* ${anu.message.persentase_kecocokan}`, m)
             }
             break
             case 'kecocokanpasangan': case 'cocokpasangan': case 'pasangan': {
@@ -1581,7 +1581,7 @@ break
                 let [nama1, nama2] = text.split`|`
                 let anu = await primbon.kecocokan_nama_pasangan(nama1, nama2)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendImage(m.chat,  anu.message.gambar, `⭔ *Nama Anda :* ${anu.message.nama_anda}\n⭔ *Nama Pasangan :* ${anu.message.nama_pasangan}\n⭔ *Sisi Positif :* ${anu.message.sisi_positif}\n⭔ *Sisi Negatif :* ${anu.message.sisi_negatif}`, m)
+                sock.sendImage(m.chat,  anu.message.gambar, `â­” *Nama Anda :* ${anu.message.nama_anda}\nâ­” *Nama Pasangan :* ${anu.message.nama_pasangan}\nâ­” *Sisi Positif :* ${anu.message.sisi_positif}\nâ­” *Sisi Negatif :* ${anu.message.sisi_negatif}`, m)
             }
             break
             case 'jadianpernikahan': case 'jadiannikah': {
@@ -1589,7 +1589,7 @@ break
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.tanggal_jadian_pernikahan(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Tanggal Pernikahan :* ${anu.message.tanggal}\n⭔ *karakteristik :* ${anu.message.karakteristik}`, m)
+                sock.sendText(m.chat, `â­” *Tanggal Pernikahan :* ${anu.message.tanggal}\nâ­” *karakteristik :* ${anu.message.karakteristik}`, m)
             }
             break
             case 'sifatusaha': {
@@ -1597,7 +1597,7 @@ break
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.sifat_usaha_bisnis(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Lahir :* ${anu.message.hari_lahir}\n⭔ *Usaha :* ${anu.message.usaha}`, m)
+                sock.sendText(m.chat, `â­” *Lahir :* ${anu.message.hari_lahir}\nâ­” *Usaha :* ${anu.message.usaha}`, m)
             }
             break
             case 'rejeki': case 'rezeki': {
@@ -1605,7 +1605,7 @@ break
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.rejeki_hoki_weton(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Lahir :* ${anu.message.hari_lahir}\n⭔ *Rezeki :* ${anu.message.rejeki}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Lahir :* ${anu.message.hari_lahir}\nâ­” *Rezeki :* ${anu.message.rejeki}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'pekerjaan': case 'kerja': {
@@ -1613,7 +1613,7 @@ break
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.pekerjaan_weton_lahir(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Lahir :* ${anu.message.hari_lahir}\n⭔ *Pekerjaan :* ${anu.message.pekerjaan}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Lahir :* ${anu.message.hari_lahir}\nâ­” *Pekerjaan :* ${anu.message.pekerjaan}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'ramalannasib': case 'ramalnasib': case 'nasib': {
@@ -1621,7 +1621,7 @@ break
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.ramalan_nasib(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Analisa :* ${anu.message.analisa}\n⭔ *Angka Akar :* ${anu.message.angka_akar}\n⭔ *Sifat :* ${anu.message.sifat}\n⭔ *Elemen :* ${anu.message.elemen}\n⭔ *Angka Keberuntungan :* ${anu.message.angka_keberuntungan}`, m)
+                sock.sendText(m.chat, `â­” *Analisa :* ${anu.message.analisa}\nâ­” *Angka Akar :* ${anu.message.angka_akar}\nâ­” *Sifat :* ${anu.message.sifat}\nâ­” *Elemen :* ${anu.message.elemen}\nâ­” *Angka Keberuntungan :* ${anu.message.angka_keberuntungan}`, m)
             }
             break
             case 'potensipenyakit': case 'penyakit': {
@@ -1629,7 +1629,7 @@ break
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.cek_potensi_penyakit(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Analisa :* ${anu.message.analisa}\n⭔ *Sektor :* ${anu.message.sektor}\n⭔ *Elemen :* ${anu.message.elemen}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Analisa :* ${anu.message.analisa}\nâ­” *Sektor :* ${anu.message.sektor}\nâ­” *Elemen :* ${anu.message.elemen}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'artitarot': case 'tarot': {
@@ -1637,7 +1637,7 @@ break
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.arti_kartu_tarot(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendImage(m.chat, anu.message.image, `⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Simbol Tarot :* ${anu.message.simbol_tarot}\n⭔ *Arti :* ${anu.message.arti}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendImage(m.chat, anu.message.image, `â­” *Lahir :* ${anu.message.tgl_lahir}\nâ­” *Simbol Tarot :* ${anu.message.simbol_tarot}\nâ­” *Arti :* ${anu.message.arti}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'fengshui': {
@@ -1645,7 +1645,7 @@ break
                 let [nama, gender, tahun] = text.split`,`
                 let anu = await primbon.perhitungan_feng_shui(nama, gender, tahun)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tahun_lahir}\n⭔ *Gender :* ${anu.message.jenis_kelamin}\n⭔ *Angka Kua :* ${anu.message.angka_kua}\n⭔ *Kelompok :* ${anu.message.kelompok}\n⭔ *Karakter :* ${anu.message.karakter}\n⭔ *Sektor Baik :* ${anu.message.sektor_baik}\n⭔ *Sektor Buruk :* ${anu.message.sektor_buruk}`, m)
+                sock.sendText(m.chat, `â­” *Nama :* ${anu.message.nama}\nâ­” *Lahir :* ${anu.message.tahun_lahir}\nâ­” *Gender :* ${anu.message.jenis_kelamin}\nâ­” *Angka Kua :* ${anu.message.angka_kua}\nâ­” *Kelompok :* ${anu.message.kelompok}\nâ­” *Karakter :* ${anu.message.karakter}\nâ­” *Sektor Baik :* ${anu.message.sektor_baik}\nâ­” *Sektor Buruk :* ${anu.message.sektor_buruk}`, m)
             }
             break
             case 'haribaik': {
@@ -1653,7 +1653,7 @@ break
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.petung_hari_baik(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Kala Tinantang :* ${anu.message.kala_tinantang}\n⭔ *Info :* ${anu.message.info}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Lahir :* ${anu.message.tgl_lahir}\nâ­” *Kala Tinantang :* ${anu.message.kala_tinantang}\nâ­” *Info :* ${anu.message.info}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'harisangar': case 'taliwangke': {
@@ -1661,7 +1661,7 @@ break
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.hari_sangar_taliwangke(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Info :* ${anu.message.info}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Lahir :* ${anu.message.tgl_lahir}\nâ­” *Hasil :* ${anu.message.result}\nâ­” *Info :* ${anu.message.info}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'harinaas': case 'harisial': {
@@ -1669,7 +1669,7 @@ break
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.primbon_hari_naas(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Hari Lahir :* ${anu.message.hari_lahir}\n⭔ *Tanggal Lahir :* ${anu.message.tgl_lahir}\n⭔ *Hari Naas :* ${anu.message.hari_naas}\n⭔ *Info :* ${anu.message.catatan}\n⭔ *Catatan :* ${anu.message.info}`, m)
+                sock.sendText(m.chat, `â­” *Hari Lahir :* ${anu.message.hari_lahir}\nâ­” *Tanggal Lahir :* ${anu.message.tgl_lahir}\nâ­” *Hari Naas :* ${anu.message.hari_naas}\nâ­” *Info :* ${anu.message.catatan}\nâ­” *Catatan :* ${anu.message.info}`, m)
             }
             break
             case 'nagahari': case 'harinaga': {
@@ -1677,7 +1677,7 @@ break
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.rahasia_naga_hari(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Hari Lahir :* ${anu.message.hari_lahir}\n⭔ *Tanggal Lahir :* ${anu.message.tgl_lahir}\n⭔ *Arah Naga Hari :* ${anu.message.arah_naga_hari}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Hari Lahir :* ${anu.message.hari_lahir}\nâ­” *Tanggal Lahir :* ${anu.message.tgl_lahir}\nâ­” *Arah Naga Hari :* ${anu.message.arah_naga_hari}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'arahrejeki': case 'arahrezeki': {
@@ -1685,7 +1685,7 @@ break
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.primbon_arah_rejeki(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Hari Lahir :* ${anu.message.hari_lahir}\n⭔ *tanggal Lahir :* ${anu.message.tgl_lahir}\n⭔ *Arah Rezeki :* ${anu.message.arah_rejeki}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Hari Lahir :* ${anu.message.hari_lahir}\nâ­” *tanggal Lahir :* ${anu.message.tgl_lahir}\nâ­” *Arah Rezeki :* ${anu.message.arah_rejeki}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'peruntungan': {
@@ -1693,7 +1693,7 @@ break
                 let [nama, tgl, bln, thn, untuk] = text.split`,`
                 let anu = await primbon.ramalan_peruntungan(nama, tgl, bln, thn, untuk)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Peruntungan Tahun :* ${anu.message.peruntungan_tahun}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Nama :* ${anu.message.nama}\nâ­” *Lahir :* ${anu.message.tgl_lahir}\nâ­” *Peruntungan Tahun :* ${anu.message.peruntungan_tahun}\nâ­” *Hasil :* ${anu.message.result}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'weton': case 'wetonjawa': {
@@ -1701,7 +1701,7 @@ break
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.weton_jawa(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Tanggal :* ${anu.message.tanggal}\n⭔ *Jumlah Neptu :* ${anu.message.jumlah_neptu}\n⭔ *Watak Hari :* ${anu.message.watak_hari}\n⭔ *Naga Hari :* ${anu.message.naga_hari}\n⭔ *Jam Baik :* ${anu.message.jam_baik}\n⭔ *Watak Kelahiran :* ${anu.message.watak_kelahiran}`, m)
+                sock.sendText(m.chat, `â­” *Tanggal :* ${anu.message.tanggal}\nâ­” *Jumlah Neptu :* ${anu.message.jumlah_neptu}\nâ­” *Watak Hari :* ${anu.message.watak_hari}\nâ­” *Naga Hari :* ${anu.message.naga_hari}\nâ­” *Jam Baik :* ${anu.message.jam_baik}\nâ­” *Watak Kelahiran :* ${anu.message.watak_kelahiran}`, m)
             }
             break
             case 'sifat': case 'karakter': {
@@ -1709,7 +1709,7 @@ break
                 let [nama, tgl, bln, thn] = text.split`,`
                 let anu = await primbon.sifat_karakter_tanggal_lahir(nama, tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Garis Hidup :* ${anu.message.garis_hidup}`, m)
+                sock.sendText(m.chat, `â­” *Nama :* ${anu.message.nama}\nâ­” *Lahir :* ${anu.message.tgl_lahir}\nâ­” *Garis Hidup :* ${anu.message.garis_hidup}`, m)
             }
             break
             case 'keberuntungan': {
@@ -1717,7 +1717,7 @@ break
                 let [nama, tgl, bln, thn] = text.split`,`
                 let anu = await primbon.potensi_keberuntungan(nama, tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}`, m)
+                sock.sendText(m.chat, `â­” *Nama :* ${anu.message.nama}\nâ­” *Lahir :* ${anu.message.tgl_lahir}\nâ­” *Hasil :* ${anu.message.result}`, m)
             }
             break
             case 'memancing': {
@@ -1725,7 +1725,7 @@ break
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.primbon_memancing_ikan(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Tanggal :* ${anu.message.tgl_memancing}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Tanggal :* ${anu.message.tgl_memancing}\nâ­” *Hasil :* ${anu.message.result}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'masasubur': {
@@ -1733,7 +1733,7 @@ break
                 let [tgl, bln, thn, siklus] = text.split`,`
                 let anu = await primbon.masa_subur(tgl, bln, thn, siklus)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Hasil :* ${anu.message.result}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'zodiak': case 'zodiac': {
@@ -1768,14 +1768,14 @@ break
                 
                 let anu = await primbon.zodiak(zodiac)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Zodiak :* ${anu.message.zodiak}\n⭔ *Nomor :* ${anu.message.nomor_keberuntungan}\n⭔ *Aroma :* ${anu.message.aroma_keberuntungan}\n⭔ *Planet :* ${anu.message.planet_yang_mengitari}\n⭔ *Bunga :* ${anu.message.bunga_keberuntungan}\n⭔ *Warna :* ${anu.message.warna_keberuntungan}\n⭔ *Batu :* ${anu.message.batu_keberuntungan}\n⭔ *Elemen :* ${anu.message.elemen_keberuntungan}\n⭔ *Pasangan Zodiak :* ${anu.message.pasangan_zodiak}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                sock.sendText(m.chat, `â­” *Zodiak :* ${anu.message.zodiak}\nâ­” *Nomor :* ${anu.message.nomor_keberuntungan}\nâ­” *Aroma :* ${anu.message.aroma_keberuntungan}\nâ­” *Planet :* ${anu.message.planet_yang_mengitari}\nâ­” *Bunga :* ${anu.message.bunga_keberuntungan}\nâ­” *Warna :* ${anu.message.warna_keberuntungan}\nâ­” *Batu :* ${anu.message.batu_keberuntungan}\nâ­” *Elemen :* ${anu.message.elemen_keberuntungan}\nâ­” *Pasangan Zodiak :* ${anu.message.pasangan_zodiak}\nâ­” *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'shio': {
                 if (!text) throw `Example : ${prefix + command} tikus\n\nNote : For Detail https://primbon.com/shio.htm`
                 let anu = await primbon.shio(text)
                 if (anu.status == false) return m.reply(anu.message)
-                sock.sendText(m.chat, `⭔ *Hasil :* ${anu.message}`, m)
+                sock.sendText(m.chat, `â­” *Hasil :* ${anu.message}`, m)
             }
             break
 	        case 'tiktok': case 'tiktoknowm': {
@@ -1783,8 +1783,8 @@ break
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/tiktok', { url: text }, 'apikey'))
                 let buttons = [
-                    {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1},
-                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
+                    {buttonId: `tiktokwm ${text}`, buttonText: {displayText: 'â–º With Watermark'}, type: 1},
+                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: 'â™« Audio'}, type: 1}
                 ]
                 let buttonMessage = {
                     video: { url: anu.result.nowatermark },
@@ -1801,8 +1801,8 @@ break
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/tiktok', { url: text }, 'apikey'))
                 let buttons = [
-                    {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
-                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
+                    {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: 'â–º No Watermark'}, type: 1},
+                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: 'â™« Audio'}, type: 1}
                 ]
                 let buttonMessage = {
                     video: { url: anu.result.watermark },
@@ -1819,8 +1819,8 @@ break
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/tiktok', { url: text }, 'apikey'))
                 let buttons = [
-                    {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
-                    {buttonId: `tiktokwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1}
+                    {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: 'â–º No Watermark'}, type: 1},
+                    {buttonId: `tiktokwm ${text}`, buttonText: {displayText: 'â–º With Watermark'}, type: 1}
                 ]
                 let buttonMessage = {
                     text: `Download From ${text}`,
@@ -1851,7 +1851,7 @@ break
                 if (!text) throw 'No Query Title'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/joox', { query: text }, 'apikey'))
-                let msg = await sock.sendImage(m.chat, anu.result.img, `⭔ Title : ${anu.result.lagu}\n⭔ Album : ${anu.result.album}\n⭔ Singer : ${anu.result.penyanyi}\n⭔ Publish : ${anu.result.publish}\n⭔ Lirik :\n${anu.result.lirik.result}`, m)
+                let msg = await sock.sendImage(m.chat, anu.result.img, `â­” Title : ${anu.result.lagu}\nâ­” Album : ${anu.result.album}\nâ­” Singer : ${anu.result.penyanyi}\nâ­” Publish : ${anu.result.publish}\nâ­” Lirik :\n${anu.result.lirik.result}`, m)
                 sock.sendMessage(m.chat, { audio: { url: anu.result.mp4aLink }, mimetype: 'audio/mpeg', fileName: anu.result.lagu+'.m4a' }, { quoted: msg })
             }
             break
@@ -1859,7 +1859,7 @@ break
                 if (!text) throw 'No Query Title'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/soundcloud', { url: isUrl(text)[0] }, 'apikey'))
-                let msg = await sock.sendImage(m.chat, anu.result.thumb, `⭔ Title : ${anu.result.title}\n⭔ Url : ${isUrl(text)[0]}`)
+                let msg = await sock.sendImage(m.chat, anu.result.thumb, `â­” Title : ${anu.result.title}\nâ­” Url : ${isUrl(text)[0]}`)
                 sock.sendMessage(m.chat, { audio: { url: anu.result.url }, mimetype: 'audio/mpeg', fileName: anu.result.title+'.m4a' }, { quoted: msg })
             }
             break
@@ -1868,7 +1868,7 @@ break
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/twitter', { url: text }, 'apikey'))
                 let buttons = [
-                    {buttonId: `twittermp3 ${text}`, buttonText: {displayText: '► Audio'}, type: 1}
+                    {buttonId: `twittermp3 ${text}`, buttonText: {displayText: 'â–º Audio'}, type: 1}
                 ]
                 let buttonMessage = {
                     video: { url: anu.result.HD || anu.result.SD },
@@ -1885,7 +1885,7 @@ break
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/twitter', { url: text }, 'apikey'))
                 let buttons = [
-                    {buttonId: `twitter ${text}`, buttonText: {displayText: '► Video'}, type: 1}
+                    {buttonId: `twitter ${text}`, buttonText: {displayText: 'â–º Video'}, type: 1}
                 ]
                 let buttonMessage = {
 		    image: { url: anu.result.thumb },
@@ -1902,7 +1902,7 @@ break
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/facebook', { url: text }, 'apikey'))
-                sock.sendMessage(m.chat, { video: { url: anu.result.url }, caption: `⭔ Title : ${anu.result.title}`}, { quoted: m })
+                sock.sendMessage(m.chat, { video: { url: anu.result.url }, caption: `â­” Title : ${anu.result.title}`}, { quoted: m })
             }
             break
 	        case 'pindl': case 'pinterestdl': {
@@ -1918,17 +1918,17 @@ break
 		let anu = await umma(isUrl(text)[0])
 		if (anu.type == 'video') {
 		    let buttons = [
-                        {buttonId: `ytmp3 ${anu.media[0]} 128kbps`, buttonText: {displayText: '♫ Audio'}, type: 1},
-                        {buttonId: `ytmp4 ${anu.media[0]} 360p`, buttonText: {displayText: '► Video'}, type: 1}
+                        {buttonId: `ytmp3 ${anu.media[0]} 128kbps`, buttonText: {displayText: 'â™« Audio'}, type: 1},
+                        {buttonId: `ytmp4 ${anu.media[0]} 360p`, buttonText: {displayText: 'â–º Video'}, type: 1}
                     ]
 		    let buttonMessage = {
 		        image: { url: anu.author.profilePic },
 			caption: `
-⭔ Title : ${anu.title}
-⭔ Author : ${anu.author.name}
-⭔ Like : ${anu.like}
-⭔ Caption : ${anu.caption}
-⭔ Url : ${anu.media[0]}
+â­” Title : ${anu.title}
+â­” Author : ${anu.author.name}
+â­” Like : ${anu.like}
+â­” Caption : ${anu.caption}
+â­” Url : ${anu.media[0]}
 Untuk Download Media Silahkan Klik salah satu Button dibawah ini atau masukkan command ytmp3/ytmp4 dengan url diatas
 `,
 			footer: sock.user.name,
@@ -1938,7 +1938,7 @@ Untuk Download Media Silahkan Klik salah satu Button dibawah ini atau masukkan c
 		    sock.sendMessage(m.chat, buttonMessage, { quoted: m })
 		} else if (anu.type == 'image') {
 		    anu.media.map(async (url) => {
-		        sock.sendMessage(m.chat, { image: { url }, caption: `⭔ Title : ${anu.title}\n⭔ Author : ${anu.author.name}\n⭔ Like : ${anu.like}\n⭔ Caption : ${anu.caption}` }, { quoted: m })
+		        sock.sendMessage(m.chat, { image: { url }, caption: `â­” Title : ${anu.title}\nâ­” Author : ${anu.author.name}\nâ­” Like : ${anu.like}\nâ­” Caption : ${anu.caption}` }, { quoted: m })
 		    })
 		}
 	    }
@@ -2031,7 +2031,7 @@ ${id}`)
 		if (!args[0]) throw `Contoh penggunaan:\n${prefix + command} 1 2\n\nmaka hasilnya adalah tafsir surah Al-Fatihah ayat 2`
 		if (!args[1]) throw `Contoh penggunaan:\n${prefix + command} 1 2\n\nmaka hasilnya adalah tafsir surah Al-Fatihah ayat 2`
 		let res = await fetchJson(`https://islamic-api-indonesia.herokuapp.com/api/data/quran?surah=${args[0]}&ayat=${args[1]}`)
-		let txt = `「 *Tafsir Surah*  」
+		let txt = `ã€Œ *Tafsir Surah*  ã€
 
 *Pendek* : ${res.result.data.tafsir.id.short}
 
@@ -2138,9 +2138,9 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
             case 'listmsg': {
                 let msgs = JSON.parse(fs.readFileSync('./src/database.json'))
 	        let seplit = Object.entries(global.db.database).map(([nama, isi]) => { return { nama, ...isi } })
-		let teks = '「 LIST DATABASE 」\n\n'
+		let teks = 'ã€Œ LIST DATABASE ã€\n\n'
 		for (let i of seplit) {
-		    teks += `⬡ *Name :* ${i.nama}\n⬡ *Type :* ${getContentType(i.message).replace(/Message/i, '')}\n────────────────────────\n\n`
+		    teks += `â¬¡ *Name :* ${i.nama}\nâ¬¡ *Type :* ${getContentType(i.message).replace(/Message/i, '')}\nâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n\n`
 	        }
 	        m.reply(teks)
 	    }
@@ -2309,7 +2309,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                 respon = `
 Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\n\nRuntime : ${runtime(process.uptime())}
 
-💻 Info Server
+ðŸ’» Info Server
 RAM: ${formatp(os.totalmem() - os.freemem())} / ${formatp(os.totalmem())}
 
 _NodeJS Memory Usaage_
@@ -2334,251 +2334,251 @@ ${salam}
 * Nama :* ${pushname}
 * Nomor :* ${m.sender.split("@")[0]}
 * Status :* ${isCreator ? 'Owner' : 'User'}
-* Limit :* ${checkLimit(sender)}
+* Limit :* ${checkLimit(m.sender)}
 
 _Here are all the commands from my bot_
 ${readmore}
 *GROUP*
-� ${prefix}linkgroup
-� ${prefix}ephemeral [option]
-� ${prefix}setppgc [image]
-� ${prefix}setname [text]
-� ${prefix}setdesc [text]
-� ${prefix}group [option]
-� ${prefix}editinfo [option]
-� ${prefix}add @user
-� ${prefix}kick @user
-� ${prefix}hidetag [text]
-� ${prefix}tagall [text]
-� ${prefix}promote @user
-� ${prefix}demote @user
-� ${prefix}vote [text]
-� ${prefix}devote
-� ${prefix}upvote
-� ${prefix}cekvote
-� ${prefix}hapusvote
+• ${prefix}linkgroup
+• ${prefix}ephemeral [option]
+• ${prefix}setppgc [image]
+• ${prefix}setname [text]
+• ${prefix}setdesc [text]
+• ${prefix}group [option]
+• ${prefix}editinfo [option]
+• ${prefix}add @user
+• ${prefix}kick @user
+• ${prefix}hidetag [text]
+• ${prefix}tagall [text]
+• ${prefix}promote @user
+• ${prefix}demote @user
+• ${prefix}vote [text]
+• ${prefix}devote
+• ${prefix}upvote
+• ${prefix}cekvote
+• ${prefix}hapusvote
 
 *DOWNLOADER*
-� ${prefix}tiktoknowm [url]
-� ${prefix}tiktokwm [url]
-� ${prefix}tiktokmp3 [url]
-� ${prefix}instagram [url]
-� ${prefix}twitter [url]
-� ${prefix}twittermp3 [url]
-� ${prefix}facebook [url]
-� ${prefix}pinterestdl [url]
-� ${prefix}ytmp3 [url]
-� ${prefix}ytmp4 [url]
-� ${prefix}getmusic [query]
-� ${prefix}getvideo [query]
-� ${prefix}umma [url]
-� ${prefix}joox [query]
-� ${prefix}soundcloud [url]
+• ${prefix}tiktoknowm [url]
+• ${prefix}tiktokwm [url]
+• ${prefix}tiktokmp3 [url]
+• ${prefix}instagram [url]
+• ${prefix}twitter [url]
+• ${prefix}twittermp3 [url]
+• ${prefix}facebook [url]
+• ${prefix}pinterestdl [url]
+• ${prefix}ytmp3 [url]
+• ${prefix}ytmp4 [url]
+• ${prefix}getmusic [query]
+• ${prefix}getvideo [query]
+• ${prefix}umma [url]
+• ${prefix}joox [query]
+• ${prefix}soundcloud [url]
 
 *SEARCH*
-� ${prefix}play [query]
-� ${prefix}yts [query]
-� ${prefix}google [query]
-� ${prefix}gimage [query]
-� ${prefix}pinterest [query]
-� ${prefix}wallpaper [query]
-� ${prefix}wikimedia [query]
-� ${prefix}ytsearch [query]
-� ${prefix}ringtone [query]
+• ${prefix}play [query]
+• ${prefix}yts [query]
+• ${prefix}google [query]
+• ${prefix}gimage [query]
+• ${prefix}pinterest [query]
+• ${prefix}wallpaper [query]
+• ${prefix}wikimedia [query]
+• ${prefix}ytsearch [query]
+• ${prefix}ringtone [query]
 
 *RANDOM*
-� ${prefix}coffe
-� ${prefix}quotesanime
-� ${prefix}motivasi
-� ${prefix}dilanquote
-� ${prefix}bucinquote
-� ${prefix}katasenja
-� ${prefix}puisi
-� ${prefix}couple
-� ${prefix}anime
-� ${prefix}waifu
-� ${prefix}husbu
-� ${prefix}neko
-� ${prefix}shinobu
-� ${prefix}megumin
+• ${prefix}coffe
+• ${prefix}quotesanime
+• ${prefix}motivasi
+• ${prefix}dilanquote
+• ${prefix}bucinquote
+• ${prefix}katasenja
+• ${prefix}puisi
+• ${prefix}couple
+• ${prefix}anime
+• ${prefix}waifu
+• ${prefix}husbu
+• ${prefix}neko
+• ${prefix}shinobu
+• ${prefix}megumin
 
 *TEXT PRO*
-� ${prefix}3dchristmas
-� ${prefix}3ddeepsea
-� ${prefix}americanflag
-� ${prefix}3dscifi
-� ${prefix}3drainbow
-� ${prefix}3dwaterpipe
-� ${prefix}halloweenskeleton
-� ${prefix}sketch
-� ${prefix}bluecircuit
-� ${prefix}space
-� ${prefix}metallic
-� ${prefix}fiction
-� ${prefix}greenhorror
-� ${prefix}transformer
-� ${prefix}berry
-� ${prefix}thunder
-� ${prefix}magma
-� ${prefix}3dcrackedstone
-� ${prefix}3dneonlight
-� ${prefix}impressiveglitch
-� ${prefix}naturalleaves
-� ${prefix}fireworksparkle
-� ${prefix}matrix
-� ${prefix}dropwater
-� ${prefix}harrypotter
-� ${prefix}foggywindow
-� ${prefix}neondevils
-� ${prefix}christmasholiday
-� ${prefix}3dgradient
-� ${prefix}blackpink
-� ${prefix}gluetext
+• ${prefix}3dchristmas
+• ${prefix}3ddeepsea
+• ${prefix}americanflag
+• ${prefix}3dscifi
+• ${prefix}3drainbow
+• ${prefix}3dwaterpipe
+• ${prefix}halloweenskeleton
+• ${prefix}sketch
+• ${prefix}bluecircuit
+• ${prefix}space
+• ${prefix}metallic
+• ${prefix}fiction
+• ${prefix}greenhorror
+• ${prefix}transformer
+• ${prefix}berry
+• ${prefix}thunder
+• ${prefix}magma
+• ${prefix}3dcrackedstone
+• ${prefix}3dneonlight
+• ${prefix}impressiveglitch
+• ${prefix}naturalleaves
+• ${prefix}fireworksparkle
+• ${prefix}matrix
+• ${prefix}dropwater
+• ${prefix}harrypotter
+• ${prefix}foggywindow
+• ${prefix}neondevils
+• ${prefix}christmasholiday
+• ${prefix}3dgradient
+• ${prefix}blackpink
+• ${prefix}gluetext
 
 *PHOTOOXY
-� ${prefix}shadow
-� ${prefix}romantic
-� ${prefix}smoke
-� ${prefix}burnpapper
-� ${prefix}naruto
-� ${prefix}lovemsg
-� ${prefix}grassmsg
-� ${prefix}lovetext
-� ${prefix}coffecup
-� ${prefix}butterfly
-� ${prefix}harrypotter
-� ${prefix}retrolol
+• ${prefix}shadow
+• ${prefix}romantic
+• ${prefix}smoke
+• ${prefix}burnpapper
+• ${prefix}naruto
+• ${prefix}lovemsg
+• ${prefix}grassmsg
+• ${prefix}lovetext
+• ${prefix}coffecup
+• ${prefix}butterfly
+• ${prefix}harrypotter
+• ${prefix}retrolol
 
 *EPHOTO*
-� ${prefix}ffcover
-� ${prefix}crossfire
-� ${prefix}galaxy
-� ${prefix}glass
-� ${prefix}neon
-� ${prefix}beach
-� ${prefix}blackpink
-� ${prefix}igcertificate
-� ${prefix}ytcertificate
+• ${prefix}ffcover
+• ${prefix}crossfire
+• ${prefix}galaxy
+• ${prefix}glass
+• ${prefix}neon
+• ${prefix}beach
+• ${prefix}blackpink
+• ${prefix}igcertificate
+• ${prefix}ytcertificate
 
 *FUN*
-� ${prefix}halah
-� ${prefix}hilih
-� ${prefix}huluh
-� ${prefix}heleh
-� ${prefix}holoh
-� ${prefix}jadian
-� ${prefix}jodohku
-� ${prefix}delttt
-� ${prefix}tictactoe
-� ${prefix}family100
-� ${prefix}tebak [option]
-� ${prefix}math [mode]
-� ${prefix}suitpvp [@tag]
+• ${prefix}halah
+• ${prefix}hilih
+• ${prefix}huluh
+• ${prefix}heleh
+• ${prefix}holoh
+• ${prefix}jadian
+• ${prefix}jodohku
+• ${prefix}delttt
+• ${prefix}tictactoe
+• ${prefix}family100
+• ${prefix}tebak [option]
+• ${prefix}math [mode]
+• ${prefix}suitpvp [@tag]
 
 *PRIMBON*
-� ${prefix}nomorhoki
-� ${prefix}artimimpi
-� ${prefix}artinama
-� ${prefix}ramaljodoh
-� ${prefix}ramaljodohbali
-� ${prefix}suamiistri
-� ${prefix}ramalcinta
-� ${prefix}cocoknama
-� ${prefix}pasangan
-� ${prefix}jadiannikah
-� ${prefix}sifatusaha
-� ${prefix}rezeki
-� ${prefix}pekerjaan
-� ${prefix}nasib
-� ${prefix}penyakit
-� ${prefix}tarot
-� ${prefix}fengshui
-� ${prefix}haribaik
-� ${prefix}harisangar
-� ${prefix}harisial
-� ${prefix}nagahari
-� ${prefix}arahrezeki
-� ${prefix}peruntungan
-� ${prefix}weton
-� ${prefix}karakter
-� ${prefix}keberuntungan
-� ${prefix}memancing
-� ${prefix}masasubur
-� ${prefix}zodiak
-� ${prefix}shio
+• ${prefix}nomorhoki
+• ${prefix}artimimpi
+• ${prefix}artinama
+• ${prefix}ramaljodoh
+• ${prefix}ramaljodohbali
+• ${prefix}suamiistri
+• ${prefix}ramalcinta
+• ${prefix}cocoknama
+• ${prefix}pasangan
+• ${prefix}jadiannikah
+• ${prefix}sifatusaha
+• ${prefix}rezeki
+• ${prefix}pekerjaan
+• ${prefix}nasib
+• ${prefix}penyakit
+• ${prefix}tarot
+• ${prefix}fengshui
+• ${prefix}haribaik
+• ${prefix}harisangar
+• ${prefix}harisial
+• ${prefix}nagahari
+• ${prefix}arahrezeki
+• ${prefix}peruntungan
+• ${prefix}weton
+• ${prefix}karakter
+• ${prefix}keberuntungan
+• ${prefix}memancing
+• ${prefix}masasubur
+• ${prefix}zodiak
+• ${prefix}shio
 
 *CONVERT*
-� ${prefix}toimage
-� ${prefix}removebg
-� ${prefix}sticker
-� ${prefix}emojimix
-� ${prefix}tovideo
-� ${prefix}togif
-� ${prefix}tourl
-� ${prefix}tovn
-� ${prefix}tomp3
-� ${prefix}toaudio
-� ${prefix}ebinary
-� ${prefix}dbinary
-� ${prefix}styletext
+• ${prefix}toimage
+• ${prefix}removebg
+• ${prefix}sticker
+• ${prefix}emojimix
+• ${prefix}tovideo
+• ${prefix}togif
+• ${prefix}tourl
+• ${prefix}tovn
+• ${prefix}tomp3
+• ${prefix}toaudio
+• ${prefix}ebinary
+• ${prefix}dbinary
+• ${prefix}styletext
 
 *MAIN MENU*
-� ${prefix}ping
-� ${prefix}owner
-� ${prefix}menu
-� ${prefix}delete
-� ${prefix}infochat
-� ${prefix}quoted
-� ${prefix}listpc
-� ${prefix}listgc
-� ${prefix}listonline
+• ${prefix}ping
+• ${prefix}owner
+• ${prefix}menu
+• ${prefix}delete
+• ${prefix}infochat
+• ${prefix}quoted
+• ${prefix}listpc
+• ${prefix}listgc
+• ${prefix}listonline
 
 *DATABASE*
-� ${prefix}setcmd
-� ${prefix}listcmd
-� ${prefix}delcmd
-� ${prefix}lockcmd
-� ${prefix}addmsg
-� ${prefix}listmsg
-� ${prefix}getmsg
-� ${prefix}delmsg
+• ${prefix}setcmd
+• ${prefix}listcmd
+• ${prefix}delcmd
+• ${prefix}lockcmd
+• ${prefix}addmsg
+• ${prefix}listmsg
+• ${prefix}getmsg
+• ${prefix}delmsg
 
 *ANONYMOUS*
-� ${prefix}anonymous
-� ${prefix}start
-� ${prefix}next
-� ${prefix}keluar
-� ${prefix}sendkontak
+• ${prefix}anonymous
+• ${prefix}start
+• ${prefix}next
+• ${prefix}keluar
+• ${prefix}sendkontak
 
 *ISLAMIC*
-� ${prefix}iqra
-� ${prefix}hadist
-� ${prefix}alquran
-� ${prefix}juzamma
-� ${prefix}tafsirsurah
+• ${prefix}iqra
+• ${prefix}hadist
+• ${prefix}alquran
+• ${prefix}juzamma
+• ${prefix}tafsirsurah
 
 *VOICE CHANGER*
-� ${prefix}bass
-� ${prefix}blown
-� ${prefix}deep
-� ${prefix}earrape
-� ${prefix}fast
-� ${prefix}fat
-� ${prefix}nightcore
-� ${prefix}reverse
-� ${prefix}robot
-� ${prefix}slow
-� ${prefix}tupai
+• ${prefix}bass
+• ${prefix}blown
+• ${prefix}deep
+• ${prefix}earrape
+• ${prefix}fast
+• ${prefix}fat
+• ${prefix}nightcore
+• ${prefix}reverse
+• ${prefix}robot
+• ${prefix}slow
+• ${prefix}tupai
 
 *OWNER*
-� ${prefix}chat [option]
-� ${prefix}join [link]
-� ${prefix}leave
-� ${prefix}block @user
-� ${prefix}unblock @user
-� ${prefix}bcgroup [text]
-� ${prefix}bcall [text]
-� ${prefix}setppbot [image]
+• ${prefix}chat [option]
+• ${prefix}join [link]
+• ${prefix}leave
+• ${prefix}block @user
+• ${prefix}unblock @user
+• ${prefix}bcgroup [text]
+• ${prefix}bcall [text]
+• ${prefix}setppbot [image]
 
  Whatsapp Bot`
                 let message = await prepareWAMessageMedia({ location: fs.readFileSync('./lib/img.jpg') }, { upload: sock.waUploadToServer })
