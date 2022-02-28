@@ -2328,7 +2328,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             }
             break
             case 'list': case 'menu': case 'help': case '?': {
-                anu = `Hi @${sender.split("@")[0]}
+                anu = `Hi @${m.sender.split("@")[0]}
 ${salam}
 
 * Nama :* ${pushname}
