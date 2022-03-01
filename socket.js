@@ -1228,7 +1228,7 @@ break
                 for (let g of res) {
                 teks += `â­” *Title* : ${g.title}\n`
                 teks += `â­” *Description* : ${g.snippet}\n`
-                teks += `â­” *Link* : ${g.link}\n\nâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â””€â”€â”€â”€â”€\n\n`
+                teks += `â­” *Link* : ${g.link}\n\nâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â””€â”€”€\n\n`
                 } 
                 m.reply(teks)
                 })
@@ -2259,7 +2259,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             }
             break
             case 'owner': case 'creator': {
-                sock.sendContact(m.chat, global.owner, m)
+                sock.sendContact(m.chat, "0", m)
             }
             break
             case 'list': case 'menu': case 'help': case '?': {
@@ -2290,17 +2290,14 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                 anu = `Hi @${m.sender.split("@")[0]}
 ${salam}
 
-╭─────*「 Profile 」*
-┴
-│➻ *Name :* ${pushname}
-│➻ *Number :* ${m.sender.split("@")[0]}
-│➻ *Status :* ${isCreator ? 'Owner' : 'User'}
-│
-│➻ *Days :* ${week}, ${weton}
-│➻ *Time :* ${jam} WIB
-│➻ *Date :* ${date}
-┬
-╰───────────
+*⭔ Name :* ${pushname}
+*⭔ Number :* ${m.sender.split("@")[0]}
+*⭔ Status :* ${isCreator ? 'Owner' : 'User'}
+
+*⭔ Days :* ${week}, ${weton}
+*⭔ Time :* ${jam} WIB
+*⭔ Date :* ${date}
+*⭔ Date Islamic :* ${dateIslam}
 
 _Here are all the commands from my bot_
 ${readmore}
@@ -2560,7 +2557,7 @@ ${readmore}
                             }]
                         }
                     }
-                }), { userJid: m.chat, quoted: m })
+                }), { mentions: [m.sender], userJid: m.chat, quoted: m })
                 sock.relayMessage(m.chat, template.message, { messageId: template.key.id })
             }
             break
