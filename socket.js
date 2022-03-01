@@ -2290,14 +2290,13 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                 anu = `Hi @${m.sender.split("@")[0]}
 ${salam}
 
-*⭔ Name :* ${pushname}
-*⭔ Number :* ${m.sender.split("@")[0]}
-*⭔ Status :* ${isCreator ? 'Owner' : 'User'}
+*⭔ Name : ${pushname}*
+*⭔ Number : ${m.sender.split("@")[0]}*
+*⭔ Status : ${isCreator ? 'Owner' : 'User'}*
 
-*⭔ Days :* ${week}, ${weton}
-*⭔ Time :* ${jam} WIB
-*⭔ Date :* ${date}
-*⭔ Date Islamic :* ${dateIslam}
+*⭔ Time : ${jam} WIB*
+*⭔ Date : ${week} ${weton}, ${date}*
+*⭔ Date Islamic : ${dateIslam}*
 
 _Here are all the commands from my bot_
 ${readmore}
@@ -2556,8 +2555,8 @@ ${readmore}
                                 }
                             }]
                         }
-                    }
-                }), { mentions: [m.sender], userJid: m.chat, quoted: m })
+                    }, mentions: [m.sender]
+                }), { userJid: m.chat, quoted: m })
                 sock.relayMessage(m.chat, template.message, { messageId: template.key.id })
             }
             break
