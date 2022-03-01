@@ -2111,9 +2111,8 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                 let other = room.other(m.sender)
                 if (other) await sock.sendText(other, `\`\`\`Partner Telah Meninggalkan Sesi Anonymous\`\`\``, m)
                 delete this.anonymous[room.id]
-                if (command === 'leave') 
+                if (command === 'leave') break
             }
-            break
             case 'mulai': case 'start': {
                 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
                 this.anonymous = this.anonymous ? this.anonymous : {}
@@ -2153,8 +2152,8 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                     ]
                     await sock.sendButtonText(m.chat, buttons, `\`\`\`Mohon Tunggu Sedang Mencari Partner\`\`\``, sock.user.name, m)
                 }
+                break
             }
-            break
             case 'next': case 'lanjut': {
                 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
                 this.anonymous = this.anonymous ? this.anonymous : {}
@@ -2198,8 +2197,8 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                     ]
                     await sock.sendButtonText(m.chat, buttons, `\`\`\`Mohon Tunggu Sedang Mencari Partner\`\`\``, sock.user.name, m)
                 }
+                break
             }
-            break
             case 'public': {
                 if (!isCreator) throw mess.owner
                 sock.public = true
