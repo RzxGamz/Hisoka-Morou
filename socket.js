@@ -18,9 +18,6 @@ const primbon = new Primbon()
 
 const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom } = require('./lib/myfunc')
 
-const limitawal = 15
-const _limit = JSON.parse(fs.readFileSync('./src/limit.json'))
-
 // read database
 global.db = JSON.parse(fs.readFileSync('./src/database.json'))
 if (global.db) global.db = {
@@ -70,68 +67,6 @@ module.exports = sock = async (sock, m, chatUpdate, store) => {
         const groupOwner = m.isGroup ? groupMetadata.owner : ''
     	const isBotAdmins = m.isGroup ? groupAdmins.includes(botNumber) : false
     	const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
-
-        const bayarLimit = (sender, amount) => {
-        	let position = false
-            Object.keys(_limit).forEach((i) => {
-                if (_limit[i].id === sender) {
-                    position = i
-                }
-            })
-            if (position !== false) {
-                _limit[position].limit -= amount
-                fs.writeFileSync('./src/limit.json', JSON.stringify(_limit))
-            }
-        }
-        const limitAdd = (sender) => {
-             let position = false
-            Object.keys(_limit).forEach((i) => {
-                if (_limit[i].id == sender) {
-                    position = i
-                }
-            })
-            if (position !== false) {
-                _limit[position].limit += 1
-                fs.writeFileSync('./src/limit.json', JSON.stringify(_limit))
-            }
-        }
-       const checkLimit = (sender) => {
-       let found = false
-              for (let lmt of _limit) {
-                    if (lmt.id === sender) {
-                            let limitCounts = limitawal - lmt.limit
-                            if (limitCounts <= 0) return 
-                            found = true
-                   }
-       }
-                    if (found === false) {
-                        let obj = { id: sender, limit: 0 }
-                        _limit.push(obj)
-                        fs.writeFileSync('./src/limit.json', JSON.stringify(_limit))
-                    }
-				}
-         const isLimit = (sender) =>{ 
-		      let position = false
-              for (let i of _limit) {
-              if (i.id === sender) {
-              	let limits = i.limit
-              if (limits >= limitawal ) {
-              	  position = true
-                    return true
-              } else {
-              	_limit
-                  position = true
-                  return false
-               }
-             }
-           }
-           if (position === false) {
-           	const obj = { id: sender, limit: 0 }
-                _limit.push(obj)
-                fs.writeFileSync('./src/limit.json',JSON.stringify(_limit))
-           return false
-           }
-       }
 	
         // Public & Self
         if (!sock.public) {
@@ -1293,7 +1228,7 @@ break
                 for (let g of res) {
                 teks += `â­” *Title* : ${g.title}\n`
                 teks += `â­” *Description* : ${g.snippet}\n`
-                teks += `â­” *Link* : ${g.link}\n\nâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n\n`
+                teks += `â­” *Link* : ${g.link}\n\nâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â””€â”€â”€â”€â”€\n\n`
                 } 
                 m.reply(teks)
                 })
@@ -2328,13 +2263,44 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             }
             break
             case 'list': case 'menu': case 'help': case '?': {
+                jam = moment.tz('Asia/Jakarta').format('HH:mm:ss')
+                let d = new Date(new Date + 3600000)
+                let locale = 'id'
+                // d.getTimeZoneOffset()
+                // Offset -420 is 18.00
+                // Offset    0 is  0.00
+                // Offset  420 is  7.00
+                let weton = ['Pahing', 'Pon', 'Wage', 'Kliwon', 'Legi'][Math.floor(d / 84600000) % 5]
+                let week = d.toLocaleDateString(locale, { weekday: 'long' })
+                let date = d.toLocaleDateString(locale, {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                })
+                let dateIslam = Intl.DateTimeFormat(locale + '-TN-u-ca-islamic', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                }).format(d)
+                let times = d.toLocaleTimeString(locale, {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric'
+                })
                 anu = `Hi @${m.sender.split("@")[0]}
 ${salam}
 
-* Nama :* ${pushname}
-* Nomor :* ${m.sender.split("@")[0]}
-* Status :* ${isCreator ? 'Owner' : 'User'}
-* Limit :* ${checkLimit(m.sender)}
+╭─────*「 Profile 」*
+┴
+│➻ *Name :* ${pushname}
+│➻ *Number :* ${m.sender.split("@")[0]}
+│➻ *Status :* ${isCreator ? 'Owner' : 'User'}
+│
+│➻ *Days :* ${week}, ${weton}
+│➻ *Time :* ${jam} WIB
+│➻ *Date :* ${date}
+┬
+╰───────────
 
 _Here are all the commands from my bot_
 ${readmore}
