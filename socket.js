@@ -1349,34 +1349,36 @@ break
             break
             case 'waifu': case 'neko': case 'shinobu': case 'megumin': case 'bully': case 'cuddle': case 'cry': case 'hug': case 'awoo': case 'kiss': case 'lick': case'pat': case 'smug': case 'bonk': case 'yeet': case 'blush': case 'smile': case 'wave': case 'highfive': case 'handhold': case 'nom': case 'bite': case 'glomp': case 'slap': case 'kill': case 'happy': case 'wink': case 'poke': case 'dance': case 'cringe': {
             m.reply(mess.wait)
-            let buffer = fetchJson(`https://api.waifu.pics/sfw/${text}`)
+            fetchJson(`https://api.waifu.pics/sfw/${text}`).then((res) => {
             let buttons = [
                     {buttonId: `${text}`, buttonText: {displayText: 'Next Image'}, type: 1}
                 ]
                 let buttonMessage = {
-                    image: { url: buffer.url },
+                    image: { url: res.url },
                     caption: `Random ${text}`,
                     footer: sock.user.name,
                     buttons: buttons,
                     headerType: 4
                 }
+              })
             sock.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
             break
             case 'nsfwwaifu': case 'nsfwtrap': case 'nsfwblowjob': case 'nsfwneko': {
             m.reply(mess.wait)
             let name = text.replace('nsfw', '')
-            let buff = fetchJson(`https://api.waifu.pics/nsfw/${name}`)
+            fetchJson(`https://api.waifu.pics/nsfw/${name}`).then((res) => {
             let buttons = [
                     {buttonId: `${text}`, buttonText: {displayText: 'Next Image'}, type: 1}
                 ]
                 let buttonMessage = {
-                    image: { url: buff.url },
+                    image: { url: res.url },
                     caption: `Random ${name}`,
                     footer: sock.user.name,
                     buttons: buttons,
                     headerType: 4
                 }
+              })
             sock.sendMessage(m.chat, buttonMessage, { thumbnail: fs.readFileSync('./lib/img.jpg'), quoted: m })
             }
             break
