@@ -7,8 +7,10 @@ const util = require('util')
 const chalk = require('chalk')
 const { exec, spawn, execSync } = require("child_process")
 const axios = require('axios')
+const fetch = require('node-fetch')
 const path = require('path')
 const os = require('os')
+const ms = require('parse-ms')
 const moment = require('moment-timezone')
 const { JSDOM } = require('jsdom')
 const speed = require('performance-now')
@@ -1341,9 +1343,42 @@ break
                 sock.sendMessage(m.chat, { image: { url: result }, caption: 'â­” Media Url : '+result }, { quoted: m })
             }
             break
-            case 'anime': case 'waifu': case 'husbu': case 'neko': case 'shinobu': case 'megumin': {
+            case 'anime': case 'husbu': {
                 m.reply(mess.wait)
                 sock.sendMessage(m.chat, { image: { url: api('zenz', '/api/random/anime/'+command, 'apikey') }, caption: `Download From ${text}` }, { quoted: m})
+            }
+            break
+            case 'waifu': case 'neko': case 'shinobu': case 'megumin': case 'bully': case 'cuddle': case 'cry': case 'hug': case 'awoo': case 'kiss': case 'lick': case'pat': case 'smug': case 'bonk': case 'yeet': case 'blush': case 'smile': case 'wave': case 'highfive': case 'handhold': case 'nom': case 'bite': case 'glomp': case 'slap': case 'kill': case 'happy': case 'wink': case 'poke': case 'dance': case 'cringe': {
+            m.reply(mess.wait)
+            let buffer = fetchJson(`https://api.waifu.pics/sfw/${text}`)
+            let buttons = [
+                    {buttonId: `${text}`, buttonText: {displayText: 'Next Image'}, type: 1}
+                ]
+                let buttonMessage = {
+                    image: { url: buffer.url },
+                    caption: `Random ${text}`,
+                    footer: sock.user.name,
+                    buttons: buttons,
+                    headerType: 4
+                }
+            sock.sendMessage(m.chat, buttonMessage, { quoted: m })
+            }
+            break
+            case 'nsfwwaifu': case 'nsfwtrap': case 'nsfwblowjob': case 'nsfwneko': {
+            m.reply(mess.wait)
+            let name = text.replace('nsfw', '')
+            let buff = fetchJson(`https://api.waifu.pics/nsfw/${name}`)
+            let buttons = [
+                    {buttonId: `${text}`, buttonText: {displayText: 'Next Image'}, type: 1}
+                ]
+                let buttonMessage = {
+                    image: { url: buff.url },
+                    caption: `Random ${name}`,
+                    footer: sock.user.name,
+                    buttons: buttons,
+                    headerType: 4
+                }
+            sock.sendMessage(m.chat, buttonMessage, { thumbnail: fs.readFileSync('./lib/img.jpg'), quoted: m })
             }
             break
 	    case 'couple': {
@@ -1720,8 +1755,8 @@ break
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/tiktok', { url: text }, 'apikey'))
                 let buttons = [
-                    {buttonId: `tiktokwm ${text}`, buttonText: {displayText: 'â–º With Watermark'}, type: 1},
-                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: 'â™« Audio'}, type: 1}
+                    {buttonId: `tiktokwm ${text}`, buttonText: {displayText: 'With Watermark'}, type: 1},
+                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: 'Audio'}, type: 1}
                 ]
                 let buttonMessage = {
                     video: { url: anu.result.nowatermark },
@@ -1738,8 +1773,8 @@ break
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/tiktok', { url: text }, 'apikey'))
                 let buttons = [
-                    {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: 'â–º No Watermark'}, type: 1},
-                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: 'â™« Audio'}, type: 1}
+                    {buttonId: `tiktoknowm ${text}`, buttonText: {displayText: 'No Watermark'}, type: 1},
+                    {buttonId: `tiktokmp3 ${text}`, buttonText: {displayText: 'Audio'}, type: 1}
                 ]
                 let buttonMessage = {
                     video: { url: anu.result.watermark },
@@ -2383,11 +2418,44 @@ ${readmore}
 • ${prefix}puisi
 • ${prefix}couple
 • ${prefix}anime
+
+*SFW*
 • ${prefix}waifu
-• ${prefix}husbu
 • ${prefix}neko
 • ${prefix}shinobu
 • ${prefix}megumin
+• ${prefix}bully
+• ${prefix}cuddle
+• ${prefix}cry
+• ${prefix}hug
+• ${prefix}awoo
+• ${prefix}kiss
+• ${prefix}lick
+• ${prefix}pat
+• ${prefix}smug
+• ${prefix}bonk
+• ${prefix}yeet
+• ${prefix}blush
+• ${prefix}smile
+• ${prefix}wave
+• ${prefix}highfive
+• ${prefix}handhold
+• ${prefix}nom
+• ${prefix}bite
+• ${prefix}glomp
+• ${prefix}slap
+• ${prefix}kill
+• ${prefix}happy
+• ${prefix}wink
+• ${prefix}poke
+• ${prefix}dance
+• ${prefix}cringe
+
+*NSFW*
+• ${prefix}nsfwneko
+• ${prefix}nsfwwaifu
+• ${prefix}nsfwtrap
+• ${prefix}nsfwblowjob
 
 *TEXT PRO*
 • ${prefix}3dchristmas
@@ -2422,7 +2490,7 @@ ${readmore}
 • ${prefix}blackpink
 • ${prefix}gluetext
 
-*PHOTOOXY
+*PHOTOOXY*
 • ${prefix}shadow
 • ${prefix}romantic
 • ${prefix}smoke
@@ -2580,9 +2648,9 @@ ${readmore}
                                 }
                             }]
                         }
-                    }, mentions: [m.sender]
+                    }
                 }), { userJid: m.chat, quoted: m })
-                sock.relayMessage(m.chat, template.message, { messageId: template.key.id })
+                sock.relayMessage(m.chat, template.message, { messageId: template.key.id, mentions: [m.sender] })
             }
             break
             default:
