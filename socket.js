@@ -1360,8 +1360,8 @@ break
                     buttons: buttons,
                     headerType: 4
                 }
-              })
             sock.sendMessage(m.chat, buttonMessage, { quoted: m })
+               })
             }
             break
             case 'nsfwwaifu': case 'nsfwtrap': case 'nsfwblowjob': case 'nsfwneko': {
@@ -1378,8 +1378,8 @@ break
                     buttons: buttons,
                     headerType: 4
                 }
-              })
             sock.sendMessage(m.chat, buttonMessage, { thumbnail: fs.readFileSync('./lib/img.jpg'), quoted: m })
+              })
             }
             break
 	    case 'couple': {
