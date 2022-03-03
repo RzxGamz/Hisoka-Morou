@@ -2264,7 +2264,27 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                 sock.sendContact(m.chat, "0", m)
             }
             break
+            case 'hitungmundur': {
+            if (!text) throw "Example : /hitungmundur 01 Januari 2023 00:00:00"
+            if (args[1].includes(['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'])) throw "Nama bulan tidak valid!"
+            var countDownDate = new Date("${args[1]}, ${args[0]}, ${args[2]} ${args[3]}").getTime();
+            var now = new Date(new Date().getTime() + 25200000).getTime();
+            var distance = countDownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            m.reply(`${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik lagi`)
+            }
+            break
             case 'list': case 'menu': case 'help': case '?': {
+                var countDownDate = new Date("April, 04, 2022 04:15:00").getTime();
+                var now = new Date(new Date().getTime() + 25200000).getTime();
+                var distance = countDownDate - now;
+                var hD = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hH = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var hM = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var hS = Math.floor((distance % (1000 * 60)) / 1000);
                 jam = moment.tz('Asia/Jakarta').format('HH:mm:ss')
                 let d = new Date(new Date + 3600000)
                 let locale = 'id'
@@ -2299,6 +2319,9 @@ ${salam}
 *⭔ Time : ${jam} WIB*
 *⭔ Date : ${week} ${weton}, ${date}*
 *⭔ Date Islamic : ${dateIslam}*
+
+*Ramadhan 1443 H*
+${hD} Days ${hH} Hours ${hM} Minutes ${hS} Seconds
 
 _Here are all the commands from my bot_
 ${readmore}
