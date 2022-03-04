@@ -1350,17 +1350,7 @@ break
             case 'waifu': case 'neko': case 'shinobu': case 'megumin': case 'bully': case 'cuddle': case 'cry': case 'hug': case 'awoo': case 'kiss': case 'lick': case'pat': case 'smug': case 'bonk': case 'yeet': case 'blush': case 'smile': case 'wave': case 'highfive': case 'handhold': case 'nom': case 'bite': case 'glomp': case 'slap': case 'kill': case 'happy': case 'wink': case 'poke': case 'dance': case 'cringe': {
             m.reply(mess.wait)
             fetchJson(`https://api.waifu.pics/sfw/${text}`).then((res) => {
-            let buttons = [
-                    {buttonId: `${text}`, buttonText: {displayText: 'Next Image'}, type: 1}
-                ]
-                let buttonMessage = {
-                    image: { url: res.url },
-                    caption: `Random ${text}`,
-                    footer: sock.user.name,
-                    buttons: buttons,
-                    headerType: 4
-                }
-            sock.sendMessage(m.chat, buttonMessage, { quoted: m })
+               sock.sendMessage(m.chat, { image: { url: res.url }}, { quoted: m })
                })
             }
             break
@@ -1368,17 +1358,7 @@ break
             m.reply(mess.wait)
             let name = text.replace('nsfw', '')
             fetchJson(`https://api.waifu.pics/nsfw/${name}`).then((res) => {
-            let buttons = [
-                    {buttonId: `${text}`, buttonText: {displayText: 'Next Image'}, type: 1}
-                ]
-                let buttonMessage = {
-                    image: { url: res.url },
-                    caption: `Random ${name}`,
-                    footer: sock.user.name,
-                    buttons: buttons,
-                    headerType: 4
-                }
-            sock.sendMessage(m.chat, buttonMessage, { thumbnail: fs.readFileSync('./lib/img.jpg'), quoted: m })
+              sock.sendMessage(m.chat, { image: { url: res.url }}, { quoted: m })
               })
             }
             break
@@ -2302,8 +2282,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             break
             case 'hitungmundur': {
             if (!text) throw "Example : /hitungmundur 01 Januari 2023 00:00:00"
-            if (args[1].includes(['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'])) throw "Nama bulan tidak valid!"
-            var countDownDate = new Date("${args[1]}, ${args[0]}, ${args[2]} ${args[3]}").getTime();
+            var countDownDate = new Date(`${args[1]}, ${args[0]}, ${args[2]} ${args[3]}`).getTime();
             var now = new Date(new Date().getTime() + 25200000).getTime();
             var distance = countDownDate - now;
             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -2644,8 +2623,18 @@ ${readmore}
                hydratedFooterText: "║▌│█║▌│ █║▌│█│║▌║\n║▌│█║▌│ █║▌│█│║▌║\n\nRzc Whatsapp Bot",
                hydratedButtons: [{       
                                 urlButton: {
-                                    displayText: 'Source Code',
-                                    url: 'https://github.com/DikaArdnt/Hisoka-Morou'
+                                    displayText: 'Bot Group',
+                                    url: 'https://chat.whatsapp.com/FM1Q7xQJYN5HDSrXvQqMEn'
+                                }
+                              }, {
+                                quickReplyButton: {
+                                    displayText: 'Script',
+                                    id: 'sc'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: 'Event',
+                                    id: 'event'
                                 }
                             }]
                         }
