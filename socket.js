@@ -1349,17 +1349,33 @@ break
             break
             case 'waifu': case 'neko': case 'shinobu': case 'megumin': case 'bully': case 'cuddle': case 'cry': case 'hug': case 'awoo': case 'kiss': case 'lick': case'pat': case 'smug': case 'bonk': case 'yeet': case 'blush': case 'smile': case 'wave': case 'highfive': case 'handhold': case 'nom': case 'bite': case 'glomp': case 'slap': case 'kill': case 'happy': case 'wink': case 'poke': case 'dance': case 'cringe': {
             m.reply(mess.wait)
-            fetchJson(`https://api.waifu.pics/sfw/${text}`).then((res) => {
-               sock.sendMessage(m.chat, { image: { url: res.url }}, { quoted: m })
-               })
+            fetchJson(`https://api.waifu.pics/sfw/${command}`).then(res => {
+               sock.sendMessage(m.chat, { image: { url: res.url }, caption: `Random ${command}`, footer: sock.user.name, buttons: [{buttonId: `${command}`, buttonText: { displayText: "NEXT" }, type: 1}], headerType: 4 }, { thumbnail: fs.readFileSync('./lib/img.jpg'), quoted: m })
+            })
             }
             break
-            case 'nsfwwaifu': case 'nsfwtrap': case 'nsfwblowjob': case 'nsfwneko': {
-            m.reply(mess.wait)
-            let name = text.replace('nsfw', '')
-            fetchJson(`https://api.waifu.pics/nsfw/${name}`).then((res) => {
-              sock.sendMessage(m.chat, { image: { url: res.url }}, { quoted: m })
-              })
+            case 'nsfwwaifu': {
+            fetchJson(`https://api.waifu.pics/nsfw/waifu`).then(res => {
+               sock.sendMessage(m.chat, { image: { url: res.url }, caption: `_*NSFW WAIFU*_`, footer: sock.user.name, buttons: [{buttonId: ".nsfwwaifu", buttonText: { displayText: "NEXT" }, type: 1}], headerType: 4 }, { thumbnail: fs.readFileSync('./lib/img.jpg'), quoted: m })
+            })
+            }
+            break
+            case 'nsfwneko': {
+            fetchJson(`https://api.waifu.pics/nsfw/neko`).then(res => {
+               sock.sendMessage(m.chat, { image: { url: res.url }, caption: `_*NSFW NEKO*_`, footer: sock.user.name, buttons: [{buttonId: ".nsfwneko", buttonText: { displayText: "NEXT" }, type: 1}], headerType: 4 }, { thumbnail: fs.readFileSync('./lib/img.jpg'), quoted: m })
+            })
+            }
+            break
+            case 'nsfwtrap': {
+            fetchJson(`https://api.waifu.pics/nsfw/trap`).then(res => {
+               sock.sendMessage(m.chat, { image: { url: res.url }, caption: `_*NSFW TRAP*_`, footer: sock.user.name, buttons: [{buttonId: ".nsfwtrap", buttonText: { displayText: "NEXT" }, type: 1}], headerType: 4 }, { thumbnail: fs.readFileSync('./lib/img.jpg'), quoted: m })
+            })
+            }
+            break
+            case 'nsfwblowjob': {
+            fetchJson(`https://api.waifu.pics/nsfw/blowjob`).then(res => {
+               sock.sendMessage(m.chat, { image: { url: res.url }, caption: `_*NSFW BLOWJOB*_`, footer: sock.user.name, buttons: [{buttonId: ".nsfwblowjob", buttonText: { displayText: "NEXT" }, type: 1}], headerType: 4 }, { thumbnail: fs.readFileSync('./lib/img.jpg'), quoted: m })
+            })
             }
             break
 	    case 'couple': {
